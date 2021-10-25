@@ -7,5 +7,5 @@ metadata:
 spec:
   endpointSelector: {}
   ingress:
-    - fromCIDR:
-        - 10.0.0.0/8
+    - fromEntities:
+      - cluster

@@ -16,3 +16,10 @@ spec:
         - ports:
             - port: "53"
               protocol: UDP
+    - toPorts:
+        - ports:
+            - port: "53"
+              protocol: TCP
+        - ports:
+            - port: "53"
+              protocol: UDP

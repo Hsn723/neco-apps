@@ -1,0 +1,20 @@
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: egress-monitoring
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: vmagent
+  egress:
+    - toPorts:
+      - ports:
+        # promtail
+        - port: "3101"
+          protocol: TCP
+      - ports:
+        # cert-manager prometheus
+        - port: "9402"
+          protocol: TCP

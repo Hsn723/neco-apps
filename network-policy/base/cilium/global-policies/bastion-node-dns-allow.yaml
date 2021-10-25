@@ -1,0 +1,23 @@
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: bastion-node-dns-allow
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  endpointSelector: {}
+  ingress:
+    - fromCIDRSet:
+      - cidr: 10.72.48.0/24
+      - cidr: 10.72.80.0/24
+      - cidr: 10.76.48.0/24
+      - cidr: 10.76.80.0/24
+      - cidr: 10.78.48.0/24
+      - cidr: 10.78.80.0/24
+      toPorts:
+        - ports:
+            - port: "1053"
+              protocol: TCP
+        - ports:
+            - port: "1053"
+              protocol: UDP

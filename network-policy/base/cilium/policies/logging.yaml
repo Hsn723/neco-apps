@@ -1,0 +1,15 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: logging-allow
+  namespace: logging
+spec:
+  endpointSelector: {}
+  ingress:
+    - fromCIDRSet:
+      - cidr: 10.64.0.0/14
+      - cidr: 10.68.0.0/16
+  egress:
+    - toCIDRSet:
+      - cidr: 10.64.0.0/14
+      - cidr: 10.68.0.0/16
