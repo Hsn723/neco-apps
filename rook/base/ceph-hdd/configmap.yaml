@@ -6,4 +6,14 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 data:
-  config: ""
+  config: |
+    [global]
+    debug_bluefs = 20/20
+    debug_bluestore = 20/20
+    log_to_stderr = true
+    err_to_stderr = true
+    log_file =
+    [mon]
+    bluefs_buffered_io = false
+    [osd]
+    bluefs_buffered_io = false
