@@ -37,19 +37,16 @@ spec:
               requests:
                 memory: 2Gi
 ---
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: ingress-sample
   namespace: dctest
 spec:
-  order: 2000.0
-  selector: elasticsearch.k8s.elastic.co/cluster-name == "sample"
-  types:
-    - Ingress
+  endpointSelector:
+    matchLabels:
+      elasticsearch.k8s.elastic.co/cluster-name: sample
   ingress:
-    - action: Allow
-      protocol: TCP
-      destination:
-        ports:
-          - 9200:9400
+    - fromEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": dctest
