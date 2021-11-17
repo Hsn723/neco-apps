@@ -596,13 +596,13 @@ func applyNetworkPolicy() {
 		Expect(err).ShouldNot(HaveOccurred(), "failed to apply non-crd resource: stdout=%s, stderr=%s", stdout, stderr)
 	}
 
-	Eventually(func() error {
-		return checkDeploymentReplicas("calico-typha", "kube-system", -1)
-	}, 3*time.Minute).Should(Succeed())
+	// Eventually(func() error {
+	// 	return checkDeploymentReplicas("calico-typha", "kube-system", -1)
+	// }, 3*time.Minute).Should(Succeed())
 
-	Eventually(func() error {
-		return checkDaemonSetNumber("calico-node", "kube-system", -1)
-	}, 3*time.Minute).Should(Succeed())
+	// Eventually(func() error {
+	// 	return checkDaemonSetNumber("calico-node", "kube-system", -1)
+	// }, 3*time.Minute).Should(Succeed())
 }
 
 func setupArgoCD() {
