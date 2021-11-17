@@ -8,7 +8,7 @@ spec:
   endpointSelector:
     matchLabels:
       app.kubernetes.io/name: bmc-reverse-proxy
-      k8s:io.kubernetes.pod.namespace.labels.team: neco
+      k8s:io.cilium.k8s.namespace.labels.team: neco
   egress:
     - toCIDRSet:
         - cidr: 10.72.16.0/20

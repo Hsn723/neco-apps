@@ -11,7 +11,7 @@ spec:
       - cluster
     - toEndpoints:
       - matchLabels:
-          "k8s:io.kubernetes.pod.namespace.labels.team": neco
+          "k8s:io.cilium.k8s.namespace.labels.team": neco
     - toCIDRSet:
       - cidr: 10.64.0.0/14
       - cidr: 10.68.0.0/16
