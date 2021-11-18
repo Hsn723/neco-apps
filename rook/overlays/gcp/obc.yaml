@@ -3,6 +3,8 @@ kind: ObjectBucketClaim
 metadata:
   name: test-ob
   namespace: ceph-hdd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   generateBucketName: obc-poc
   storageClassName: ceph-hdd-bucket
