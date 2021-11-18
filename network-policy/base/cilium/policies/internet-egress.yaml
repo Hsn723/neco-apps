@@ -41,17 +41,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
 spec:
   endpointSelector: {}
-  # ingress:
-  #   - toPorts:
-  #       - ports:
-  #           - port: "53"
-  #             protocol: TCP
-  #       - ports:
-  #           - port: "53"
-  #             protocol: UDP
-  #       - ports:
-  #           - port: "3128"
-  #             protocol: TCP
   egress:
     - toPorts:
         - ports:
@@ -73,14 +62,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
 spec:
   endpointSelector: {}
-  # ingress:
-  #   - toPorts:
-  #       - ports:
-  #           - port: "1053"
-  #             protocol: TCP
-  #       - ports:
-  #           - port: "1053"
-  #             protocol: UDP
   egress:
     - toPorts:
         - ports:
