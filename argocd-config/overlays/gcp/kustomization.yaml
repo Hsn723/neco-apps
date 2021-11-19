@@ -14,6 +14,6 @@ patchesStrategicMerge:
 - monitoring.yaml
 - namespaces.yaml
 - rook.yaml
-- sandbox.yaml
+# - sandbox.yaml
 - secrets.yaml
 # - teleport.yaml
