@@ -22,7 +22,7 @@ patchesJson6902:
       value: 3Gi
     - op: replace
       path: /spec/storage/storageClassDeviceSets/0/count
-      value: 12
+      value: 9
 - target:
     group: ceph.rook.io
     version: v1
@@ -41,10 +41,10 @@ patchesJson6902:
       value: 3Gi
     - op: replace
       path: /spec/storage/storageClassDeviceSets/0/count
-      value: 6
+      value: 3
     - op: replace
       path: /spec/storage/storageClassDeviceSets/0/volumeClaimTemplates/0/spec/resources/requests/storage
-      value: 30Gi
+      value: 60Gi
 - target:
     group: apps
     version: v1
