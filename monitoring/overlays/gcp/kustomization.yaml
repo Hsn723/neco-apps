@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../../base
 patchesStrategicMerge:
-  - victoriametrics/vmsingle-smallset.yaml
+  # - victoriametrics/vmsingle-smallset.yaml
   - victoriametrics/rules/rook-scrape.yaml
 configMapGenerator:
   - name: vmalertmanager
