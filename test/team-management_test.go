@@ -101,6 +101,16 @@ var viewableResources = []string{
 	// Cert-manager
 	"clusterissuers.cert-manager.io",
 
+	// Cilium
+	"ciliumlocalredirectpolicies.cilium.io",
+	"ciliumendpoints.cilium.io",
+	"ciliumclusterwidenetworkpolicies.cilium.io",
+	"ciliumidentities.cilium.io",
+	"ciliumnetworkpolicies.cilium.io",
+	"ciliumnodes.cilium.io",
+	"ciliumegressnatpolicies.cilium.io",
+	"ciliumexternalworkloads.cilium.io",
+
 	// Coil
 	"egresses.coil.cybozu.com",
 	"blockrequests.coil.cybozu.com",
