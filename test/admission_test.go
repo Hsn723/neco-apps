@@ -34,7 +34,7 @@ var admissionHTTPProxyAnnotatedYAML []byte
 var admissionApplicationYAML string
 
 func testAdmission() {
-	It("should validate Calico NetworkPolicy", func() {
+	It("should validate Cilium NetworkPolicy", func() {
 		_, stderr, err := ExecAtWithInput(boot0, admissionNetworkPolicyYAML, "kubectl", "apply", "-f", "-")
 		Expect(err).To(HaveOccurred())
 		Expect(string(stderr)).Should(ContainSubstring(`admission webhook "vnetworkpolicy.kb.io" denied the request`))

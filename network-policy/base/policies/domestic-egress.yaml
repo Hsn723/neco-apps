@@ -1,40 +1,26 @@
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkSet
-metadata:
-  name: switch
-  namespace: domestic-egress
-  labels:
-    role: switch
-spec:
-  nets:
-    - 10.72.0.0/20
-    - 10.76.0.0/20
-    - 10.78.0.0/20
----
-apiVersion: crd.projectcalico.org/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
   name: network-nat
   namespace: domestic-egress
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  order: 100.0
-  selector: app.kubernetes.io/component == 'egress' && app.kubernetes.io/instance == 'network-nat' && app.kubernetes.io/name == 'coil'
-  types:
-    - Ingress
-    - Egress
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/component: egress
+      app.kubernetes.io/instance: network-nat
+      app.kubernetes.io/name: coil
   ingress:
-    - action: Allow
-      protocol: UDP
-      source:
-        namespaceSelector: team == 'network'
-      destination:
-        ports:
-          - 5555
-    - action: Deny
+    - fromEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace.labels.team: network
+      toPorts:
+        - ports:
+            - port: "5555"
+              protocol: UDP
   egress:
-    - action: Allow
-      destination:
-        selector: role == 'switch'
-    
+    - toCIDRSet:
+        - cidr: 10.72.0.0/20
+        - cidr: 10.76.0.0/20
+        - cidr: 10.78.0.0/20
