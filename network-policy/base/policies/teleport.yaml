@@ -37,3 +37,28 @@ spec:
         - ports:
             - port: "2379"
               protocol: TCP
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: ingress-teleport-auth-allow
+  namespace: teleport
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: teleport
+      app.kubernetes.io/component: auth
+  ingress:
+    - fromCIDRSet:
+        - cidr: 10.72.48.0/24
+        - cidr: 10.72.80.0/24
+        - cidr: 10.76.48.0/24
+        - cidr: 10.76.80.0/24
+        - cidr: 10.78.48.0/24
+        - cidr: 10.78.80.0/24
+      toPorts:
+        - ports:
+            - port: "3025"
+              protocol: TCP
