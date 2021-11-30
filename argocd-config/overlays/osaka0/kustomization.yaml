@@ -11,6 +11,7 @@ patchesStrategicMerge:
 - cert-manager.yaml
 - coil.yaml
 - external-dns.yaml
+- kube-storage-version-migrator.yaml
 - metallb.yaml
 - monitoring.yaml
 - rook.yaml
