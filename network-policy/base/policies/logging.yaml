@@ -5,20 +5,6 @@ metadata:
   namespace: logging
 spec:
   endpointSelector: {}
-  ingress:
-    - fromCIDRSet:
-      # - cidr: 10.64.0.0/14
-      # - cidr: 10.68.0.0/16
-      - cidr: 10.72.48.0/24
-      - cidr: 10.72.80.0/24
-      - cidr: 10.76.48.0/24
-      - cidr: 10.76.80.0/24
-      - cidr: 10.78.48.0/24
-      - cidr: 10.78.80.0/24
-      toPorts:
-      - ports:
-        - port: "3100"
-          protocol: TCP
   egress:
     - toCIDRSet:
       - cidr: 10.64.0.0/14
