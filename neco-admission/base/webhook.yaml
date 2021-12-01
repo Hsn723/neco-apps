@@ -47,12 +47,24 @@ webhooks:
     service:
       name: neco-admission
       namespace: kube-system
+      path: /validate-cilium-io-ciliumnetworkpolicy
   namespaceSelector:
     matchExpressions:
     - key: vnetworkpolicy.kb.io/ignore
       operator: NotIn
       values:
       - "true"
+  rules:
+  - apiGroups:
+    - cilium.io
+    apiVersions:
+    - v2
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - ciliumclusterwidenetworkpolicies
+    - ciliumnetworkpolicies
 - name: vapplication.kb.io
   clientConfig:
     service:
