@@ -64,7 +64,6 @@ webhooks:
     - UPDATE
     resources:
     - ciliumclusterwidenetworkpolicies
-    - ciliumnetworkpolicies
 - name: vapplication.kb.io
   clientConfig:
     service:
