@@ -49,18 +49,18 @@ spec:
         - ports:
             - port: "10180"
               protocol: TCP
----
-apiVersion: cilium.io/v2
-kind: CiliumNetworkPolicy
-metadata:
-  name: ingress-prometheus
-  namespace: monitoring
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
-spec:
-  endpointSelector:
-    matchLabels:
-      app.kubernetes.io/name: vmagent
-  ingress:
-    - fromCIDR:
-      - 10.69.0.0/16
+# ---
+# apiVersion: cilium.io/v2
+# kind: CiliumNetworkPolicy
+# metadata:
+#   name: ingress-prometheus
+#   namespace: monitoring
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "1"
+# spec:
+#   endpointSelector:
+#     matchLabels:
+#       app.kubernetes.io/name: vmagent
+#   ingress:
+#     - fromCIDR:
+#       - 10.69.0.0/16

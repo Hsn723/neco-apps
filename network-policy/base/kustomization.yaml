@@ -9,9 +9,7 @@ resources:
   - policies/monitoring.yaml
   - policies/teleport.yaml
   - global-policies/apiserver.yaml
-  - global-policies/bastion-node-dns-allow.yaml
   - global-policies/bmc-reverse-proxy.yaml
-  - global-policies/coil-nat.yaml
   - global-policies/controller-manager.yaml
   - global-policies/egress-backyard-deny.yaml
   - global-policies/egress-cluster-allow.yaml

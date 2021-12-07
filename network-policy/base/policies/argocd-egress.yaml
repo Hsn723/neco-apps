@@ -7,9 +7,9 @@ metadata:
   namespace: argocd
 spec:
   endpointSelector: {}
-  ingress:
-    - fromEndpoints:
-      - {}
+  # ingress:
+  #   - fromEndpoints:
+  #     - {}
   egress:
     - toEndpoints:
       - {}
