@@ -29,6 +29,7 @@ resources:
   - global-policies/network-set.yaml
   - global-policies/node-dns.yaml
   - global-policies/scheduler.yaml
+  - cilium
 patchesStrategicMerge:
   - calico/deployment.yaml
   - calico/daemonset.yaml

@@ -1,0 +1,26 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  name: argocd-allow
+  namespace: argocd
+spec:
+  endpointSelector: {}
+  # ingress:
+  #   - fromEndpoints:
+  #     - {}
+  egress:
+    - toEndpoints:
+      - {}
+    - toEndpoints:
+      - matchLabels:
+          io.kubernetes.pod.namespace: kube-system
+          k8s-app: coredns
+      toPorts:
+      - ports:
+        - port: "53"
+          protocol: TCP
+      - ports:
+        - port: "53"
+          protocol: UDP
