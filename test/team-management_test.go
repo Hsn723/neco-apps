@@ -122,8 +122,9 @@ var viewableResources = []string{
 // prohibitedResources is a list of namespace resources that are not allowed to be created or viewed by unprivileged teams.
 var prohibitedResources = []string{
 	// Contour
-	// This resource is classified as prohibitedResources, but that is not intentionally done by Neco team.
-	"extensionservices.projectcontour.io",
+	"contourconfigurations.projectcontour.io",
+	"contourdeployments.projectcontour.io",
+	"extensionservices.projectcontour.io", // This resource is classified as prohibitedResources, but that is not intentionally done by Neco team.
 
 	// Rook
 	"cephblockpools.ceph.rook.io",
@@ -259,6 +260,17 @@ func getActualVerbs(team, ns string) map[string][]string {
 	return ret
 }
 
+var privilegedTeams = []string{"neco", "csa"}
+
+func isPrivileged(team string) bool {
+	for _, privilegedTeam := range privilegedTeams {
+		if team == privilegedTeam {
+			return true
+		}
+	}
+	return false
+}
+
 func testTeamManagement() {
 	It("should give appropriate authority to unprivileged team", func() {
 		namespaceList := []string{}
@@ -323,7 +335,7 @@ func testTeamManagement() {
 		// make unprivileged team list
 		tenantTeamSet := make(map[string]struct{})
 		for _, t := range nsOwner {
-			if t != "neco" {
+			if !isPrivileged(t) {
 				tenantTeamSet[t] = struct{}{}
 			}
 		}
@@ -351,7 +363,7 @@ func testTeamManagement() {
 				for _, resource := range secretResources {
 					key := keyGen(team, ns, resource)
 
-					if ns == "sandbox" || nsOwner[ns] == team || (team == "maneki" && nsOwner[ns] != "neco") {
+					if ns == "sandbox" || nsOwner[ns] == team || (team == "maneki" && !isPrivileged(nsOwner[ns])) {
 						expectedVerbs[key] = adminVerbs
 					} else {
 						expectedVerbs[key] = prohibitedVerbs
@@ -368,7 +380,7 @@ func testTeamManagement() {
 				for _, resource := range requiredResources {
 					key := keyGen(team, ns, resource)
 
-					if ns == "sandbox" || nsOwner[ns] == team || (team == "maneki" && nsOwner[ns] != "neco") {
+					if ns == "sandbox" || nsOwner[ns] == team || (team == "maneki" && !isPrivileged(nsOwner[ns])) {
 						expectedVerbs[key] = adminVerbs
 					} else {
 						expectedVerbs[key] = viewVerbs
