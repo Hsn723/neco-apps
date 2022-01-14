@@ -252,6 +252,10 @@ func testSetup() {
 		createNamespaceIfNotExists("sandbox", false)
 	})
 
+	It("should create grafana-sandbox namespace", func() {
+		createNamespaceIfNotExists("grafana-sandbox", false)
+	})
+
 	It("should create general purpose namespace for dctest", func() {
 		createNamespaceIfNotExists("dctest", true)
 	})
@@ -534,11 +538,16 @@ func applyAndWaitForApplications(commitID string) {
 				continue
 			}
 
-			if app.Name == "rook" && app.Status.Sync.Status != SyncStatusCodeSynced && app.Operation == nil {
-				fmt.Printf("%s sync rook app manually: syncStatus=%s, healthStatus=%s\n",
-					time.Now().Format(time.RFC3339), app.Status.Sync.Status, app.Status.Health.Status)
-				ExecAt(boot0, "argocd", "app", "sync", "rook", "--async", "--prune")
-				// ignore error
+			manualPruneSyncAppNames := []string{
+				"rook",
+			}
+			for _, n := range manualPruneSyncAppNames {
+				if app.Name == n && app.Status.Sync.Status != SyncStatusCodeSynced && app.Operation == nil {
+					fmt.Printf("%s sync %s app manually: syncStatus=%s, healthStatus=%s\n",
+						time.Now().Format(time.RFC3339), n, app.Status.Sync.Status, app.Status.Health.Status)
+					ExecAt(boot0, "argocd", "app", "sync", n, "--async", "--prune")
+					// ignore error
+				}
 			}
 
 			// In upgrade test, syncing network-policy app may cause temporal network disruption.

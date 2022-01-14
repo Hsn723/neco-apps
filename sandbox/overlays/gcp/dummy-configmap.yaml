@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dummy
+  namespace: sandbox
+data:
+  description: Dummy ConfigMap to keep sandbox App non-empty

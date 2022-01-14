@@ -31,12 +31,12 @@ func testSandboxGrafana() {
 	It("should have data sources and dashboards", func() {
 		By("confirming grafana is deployed successfully")
 		Eventually(func() error {
-			return checkStatefulSetReplicas("grafana", "sandbox", 1)
+			return checkDeploymentReplicas("grafana", "grafana-sandbox", 2)
 		}).Should(Succeed())
 
 		By("confirming created Certificate")
 		Eventually(func() error {
-			return checkCertificate("grafana-test", "sandbox")
+			return checkCertificate("grafana-test", "grafana-sandbox")
 		}).Should(Succeed())
 
 		By("getting admin stats from grafana")

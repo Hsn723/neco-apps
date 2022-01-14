@@ -13,6 +13,7 @@ patchesStrategicMerge:
 - customer-egress.yaml
 - elastic.yaml
 - external-dns.yaml
+- grafana-sandbox.yaml
 - meows.yaml
 - ingress.yaml
 - init-template.yaml
