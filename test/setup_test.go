@@ -273,7 +273,7 @@ func testSetup() {
 			ExecSafeAt(boot0, "sed", "-i", "/meows.yaml/d", "./neco-apps/argocd-config/overlays/gcp/kustomization.yaml")
 		}
 		if permissive {
-			ExecSafeAt(boot0, "sed", "-i", "s|neco-admission/base|neco-admission/overlays/permissive|", "./neco-apps/argocd-config/base/neco-admission.yaml")
+			ExecSafeAt(boot0, "sed", "-i", "'s|neco-admission/base|neco-admission/overlays/permissive|'", "./neco-apps/argocd-config/base/neco-admission.yaml")
 		}
 		ExecSafeAt(boot0, "sed", "-i", "s/release/"+commitID+"/", "./neco-apps/argocd-config/base/*.yaml")
 		ExecSafeAt(boot0, "sed", "-i", "s/release/"+commitID+"/", "./neco-apps/argocd-config/overlays/"+overlayName+"/*.yaml")
