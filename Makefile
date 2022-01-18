@@ -86,7 +86,7 @@ update-external-dns:
 update-grafana-operator:
 	$(call get-latest-tag,grafana-operator)
 	rm -rf /tmp/grafana-operator
-	cd /tmp; git clone --depth 1 -b $(call upstream-tag,$(latest_tag)) https://github.com/integr8ly/grafana-operator
+	cd /tmp; git clone --depth 1 -b $(call upstream-tag,$(latest_tag)) https://github.com/grafana-operator/grafana-operator
 	rm -rf monitoring/base/grafana-operator/upstream/*
 	mkdir -p monitoring/base/grafana-operator/upstream/cluster_roles
 	mkdir -p monitoring/base/grafana-operator/upstream/manifests
@@ -100,7 +100,7 @@ update-grafana-operator:
 .PHONY: update-grafana
 update-grafana:
 	$(call get-latest-tag,grafana)
-	sed -i -E 's/grafana-image-tag=.*$$/grafana-image-tag=$(latest_tag)/' monitoring/base/grafana-operator/operator.yaml
+	sed -i -E 's/grafana-image-tag=.*$$/grafana-image-tag=$(latest_tag)/' monitoring/base/grafana-operator/deployment.yaml
 	sed -i -E 's,quay.io/cybozu/grafana:.*$$,quay.io/cybozu/grafana:$(latest_tag),' sandbox/overlays/gcp/grafana/statefulset.yaml
 
 .PHONY: update-heartbeat
@@ -185,7 +185,10 @@ update-meows:
 	cp -r /tmp/meows/config/* meows/overlays/gcp/upstream
 	rm -rf /tmp/meows
 	sed -i -E '/name:.*meows-controller$$/!b;n;s/newTag:.*$$/newTag: $(patsubst v%,%,$(latest_gh))/' meows/overlays/gcp/kustomization.yaml
-	sed -i -E 's,(image: quay.io/cybozu/meows-runner:).*$$,\1$(patsubst v%,%,$(latest_gh)),' test/testdata/meows-runnerpool.tmpl.yaml
+	$(call get-latest-tag,meows-dctest-runner)
+	sed -i -E 's,quay.io/cybozu/meows-dctest-runner:.*$$,quay.io/cybozu/meows-dctest-runner:$(latest_tag),' meows/overlays/stage0/runnerpool.yaml
+	$(call get-latest-tag,meows-neco-runner)
+	sed -i -E 's,quay.io/cybozu/meows-neco-runner:.*$$,quay.io/cybozu/meows-neco-runner:$(latest_tag),' meows/overlays/gcp/deployment.yaml
 
 .PHONY: update-metallb
 update-metallb:
