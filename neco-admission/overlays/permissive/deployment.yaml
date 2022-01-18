@@ -11,3 +11,5 @@ spec:
         env:
         - name: VPOD_IMAGE_PERMISSIVE
           value: "true"
+        - name: VAPPLICATION_REPOSITORY_PERMISSIVE
+          value: "true"

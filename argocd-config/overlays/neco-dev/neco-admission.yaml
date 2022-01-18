@@ -1,8 +1,0 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: neco-admission
-  namespace: argocd
-spec:
-  source:
-    path: neco-admission/overlays/neco-dev

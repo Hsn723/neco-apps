@@ -95,6 +95,9 @@ func testAdmission() {
 		Expect(err).NotTo(HaveOccurred(), "stdout: %s, stderr: %s, err: %v", stdout, stderr, err)
 		ExecSafeAt(boot0, "kubectl", "delete", "application", "valid")
 
+		if permissive {
+			Skip("permissive mode")
+		}
 		By("denying to create Application which points to invalid repo and belongs to default project")
 		buf.Reset()
 		err = tmpl.Execute(buf, tmplParams{"invalid", "default", "https://github.com/cybozu-go/invalid-apps.git"})
@@ -118,6 +121,9 @@ func testAdmission() {
 	})
 
 	It("should validate pod", func() {
+		if permissive {
+			Skip("permissive mode")
+		}
 		_, stderr, err := ExecAtWithInput(boot0, admissionPodBadImageYAML, "kubectl", "apply", "-f", "-")
 		Expect(err).To(HaveOccurred())
 		Expect(string(stderr)).To(ContainSubstring(`admission webhook "vpod.kb.io" denied the request`))
