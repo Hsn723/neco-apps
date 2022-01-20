@@ -10,11 +10,11 @@ configMapGenerator:
       - conf/ept-role.yaml
       - conf/garoon-role.yaml
       - conf/kintone-neco-role.yaml
+      - conf/landsat-role.yaml
       - conf/maneki-role.yaml
       - conf/neco-guests-role.yaml
       - conf/neco-readonly-role.yaml
       - conf/network-role.yaml
-      - conf/set-cloud-platform-role.yaml
       - conf/set-role.yaml
     name: teleport-role
     namespace: teleport

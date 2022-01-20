@@ -2,13 +2,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: set-cloud-platform
+  name: landsat
   namespace: argocd
 spec:
   destinations:
     - namespace: dev-*
       server: '*'
     - namespace: sandbox
+      server: '*'
+    - namespace: team-landsat
       server: '*'
   namespaceResourceBlacklist:
     - group: ""
@@ -21,10 +23,10 @@ spec:
     warn: false
   roles:
     - groups:
+        - cybozu-private:landsat
         - cybozu-private:maneki
-        - cybozu-private:set-cloud-platform
       name: admin
       policies:
-        - p, proj:set-cloud-platform:admin, applications, *, set-cloud-platform/*, allow
+        - p, proj:landsat:admin, applications, *, landsat/*, allow
   sourceRepos:
     - '*'

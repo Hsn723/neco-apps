@@ -12,10 +12,10 @@ resources:
   - ept.yaml
   - garoon.yaml
   - kintone-neco.yaml
+  - landsat.yaml
   - maneki.yaml
   - neco-guests.yaml
   - neco.yaml
   - network.yaml
   - serviceaccount.yaml
-  - set-cloud-platform.yaml
   - set.yaml
