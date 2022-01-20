@@ -1,0 +1,17 @@
+rule_files:
+  - ../../monitoring/base/victoriametrics/rules/converted/grafana-sandbox-alertrule.yaml
+
+tests:
+  - interval: 1m
+    input_series:
+      - series: 'up{job="grafana-sandbox"}'
+        values: '0+0x15'
+    alert_rule_test:
+      - eval_time: 15m
+        alertname: GrafanaSandboxDown
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+            exp_annotations:
+              runbook: TBD
+              summary: grafana-sandbox is down.

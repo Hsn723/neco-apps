@@ -46,6 +46,8 @@ resources:
   - rules/etcd-scrape.yaml
   - rules/external-dns-alertrule.yaml
   - rules/external-dns-scrape.yaml
+  - rules/grafana-sandbox-alertrule.yaml
+  - rules/grafana-sandbox-scrape.yaml
   - rules/ingress-alertrule.yaml
   - rules/ingress-scrape.yaml
   - rules/ingress-watcher-alertrule.yaml
