@@ -7,7 +7,7 @@ metadata:
   labels:
     app.kubernetes.io/component: node
     app.kubernetes.io/name: teleport
-  name: node-set-cloud-platform
+  name: node-landsat
   namespace: teleport
 spec:
   replicas: 1
@@ -15,8 +15,8 @@ spec:
     matchLabels:
       app.kubernetes.io/component: node
       app.kubernetes.io/name: teleport
-      teleport-node: set-cloud-platform
-  serviceName: node-set-cloud-platform
+      teleport-node: landsat
+  serviceName: node-landsat
   template:
     metadata:
       annotations:
@@ -24,13 +24,13 @@ spec:
       labels:
         app.kubernetes.io/component: node
         app.kubernetes.io/name: teleport
-        teleport-node: set-cloud-platform
+        teleport-node: landsat
     spec:
       automountServiceAccountToken: true
       containers:
         - args:
             - --roles=node
-            - --labels=team=set-cloud-platform
+            - --labels=team=landsat
             - --diag-addr=0.0.0.0:3020
           image: quay.io/cybozu/teleport-node
           livenessProbe:
@@ -39,7 +39,7 @@ spec:
               port: 3020
             initialDelaySeconds: 5
             periodSeconds: 5
-          name: node-set-cloud-platform
+          name: node-landsat
           ports:
             - containerPort: 3020
               name: metrics
@@ -57,7 +57,7 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: 10000
-      serviceAccountName: node-set-cloud-platform
+      serviceAccountName: node-landsat
       volumes:
         - name: teleport-node-secret
           secret:
