@@ -1,6 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
+  # This Job must be in monitoring NS in order to read password Secret
   namespace: monitoring
   name: grafana-sandbox-mysql-init
 spec:

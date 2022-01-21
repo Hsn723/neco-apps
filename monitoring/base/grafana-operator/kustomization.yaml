@@ -8,7 +8,6 @@ resources:
   - datasources/loki.yaml
   - datasources/victoriametrics.yaml
   - grafana.yaml
-  - grafana-sandbox-mysql-init.yaml
   - mysql.yaml
   - upstream/cluster_roles/cluster_role_aggregate_grafana_admin_edit.yaml
   - upstream/cluster_roles/cluster_role_aggregate_grafana_view.yaml

@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: grafana-sandbox
 resources:
   - ../common
+  - mysql-init.yaml
 patchesStrategicMerge:
   - grafana.yaml
