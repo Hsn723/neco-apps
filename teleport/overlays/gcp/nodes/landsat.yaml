@@ -3,5 +3,5 @@ $patch: delete
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: node-set-cloud-platform
+  name: node-landsat
   namespace: teleport

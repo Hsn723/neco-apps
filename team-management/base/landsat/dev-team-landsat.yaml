@@ -6,15 +6,15 @@ metadata:
     accurate.cybozu.com/template: init-template
     accurate.cybozu.com/type: root
     development: "true"
-  name: dev-set-cloud-platform
+  name: dev-team-landsat
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   annotations:
     accurate.cybozu.com/propagate: update
-  name: set-cloud-platform-role-binding
-  namespace: dev-set-cloud-platform
+  name: landsat-role-binding
+  namespace: dev-team-landsat
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -22,13 +22,13 @@ roleRef:
 subjects:
   - apiGroup: rbac.authorization.k8s.io
     kind: Group
-    name: maneki
+    name: landsat
   - apiGroup: rbac.authorization.k8s.io
     kind: Group
-    name: set-cloud-platform
+    name: maneki
   - kind: ServiceAccount
-    name: node-maneki
+    name: node-landsat
     namespace: teleport
   - kind: ServiceAccount
-    name: node-set-cloud-platform
+    name: node-maneki
     namespace: teleport
