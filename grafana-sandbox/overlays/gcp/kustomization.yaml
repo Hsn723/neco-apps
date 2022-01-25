@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: grafana-sandbox
+# This kustomization must omit `namespace: grafana-sandbox` to keep namespace in mysql-init.yaml
 resources:
   - ../common
   - mysql-init.yaml
