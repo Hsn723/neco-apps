@@ -22,14 +22,17 @@ spec:
       - replacement: kubernetes-apiservers
         targetLabel: job
   - port: https
-    scheme: http
+    scheme: https
+    tlsConfig:
+      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
     relabelConfigs:
       - replacement: kube-controller-manager
         targetLabel: job
       - sourceLabels: [__address__]
         action: replace
         regex: ([^:]+)(?::\d+)?
-        replacement: ${1}:10252
+        replacement: ${1}:10257
         targetLabel: __address__
       - sourceLabels: [__address__]
         targetLabel: instance
