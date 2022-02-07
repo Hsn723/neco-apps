@@ -135,7 +135,7 @@ update-kube-state-metrics:
 
 .PHONY: update-kube-storage-version-migrator
 update-kube-storage-version-migrator:
-	$(call get-latest-tag,storage-version-migrate-migrator)
+	$(call get-latest-tag,storage-version-migration-migrator)
 	rm -rf /tmp/kube-storage-version-migrator
 	cd /tmp; git clone --depth 1 -b $(call upstream-tag,$(latest_tag)) https://github.com/kubernetes-sigs/kube-storage-version-migrator
 	$(MAKE) -C /tmp/kube-storage-version-migrator local-manifests REGISTRY=quay.io/cybozu NAMESPACE=kube-storage-version-migrator VERSION=$(latest_tag)
