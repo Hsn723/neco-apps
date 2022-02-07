@@ -2,4 +2,6 @@ $patch: delete
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: kube-system
+  name: kube-storage-version-migrator
+  labels:
+    team: neco

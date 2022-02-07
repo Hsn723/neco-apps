@@ -138,7 +138,7 @@ update-kube-storage-version-migrator:
 	$(call get-latest-tag,storage-version-migrate-migrator)
 	rm -rf /tmp/kube-storage-version-migrator
 	cd /tmp; git clone --depth 1 -b $(call upstream-tag,$(latest_tag)) https://github.com/kubernetes-sigs/kube-storage-version-migrator
-	$(MAKE) -C /tmp/kube-storage-version-migrator local-manifests REGISTRY=quay.io/cybozu VERSION=$(latest_tag)
+	$(MAKE) -C /tmp/kube-storage-version-migrator local-manifests REGISTRY=quay.io/cybozu NAMESPACE=kube-storage-version-migrator VERSION=$(latest_tag)
 	rm -f kube-storage-version-migrator/base/upstream/*
 	cp /tmp/kube-storage-version-migrator/manifests.local/*.yaml kube-storage-version-migrator/base/upstream/
 	rm -rf /tmp/kube-storage-version-migrator

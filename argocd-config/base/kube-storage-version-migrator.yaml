@@ -16,7 +16,7 @@ spec:
     path: kube-storage-version-migrator/base
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: kube-storage-version-migrator
   syncPolicy:
     automated:
       prune: true

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: kube-system
+  name: kube-storage-version-migrator
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -40,7 +40,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: kube-system
+  namespace: kube-storage-version-migrator
 roleRef:
   kind: ClusterRole
   name: cluster-admin
@@ -53,7 +53,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: kube-system
+  namespace: kube-storage-version-migrator
 roleRef:
   kind: ClusterRole
   name: storage-version-migration-trigger
@@ -66,7 +66,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: kube-system
+  namespace: kube-storage-version-migrator
 roleRef:
   kind: ClusterRole
   name: storage-version-migration-crd-creator
@@ -79,7 +79,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: kube-system
+  namespace: kube-storage-version-migrator
 roleRef:
   kind: ClusterRole
   name: storage-version-migration-initializer

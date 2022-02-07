@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: initializer
-  namespace: kube-system
+  namespace: kube-storage-version-migrator
 spec:
   template:
     spec:
