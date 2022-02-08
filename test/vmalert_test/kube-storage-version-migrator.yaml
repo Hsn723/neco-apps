@@ -1,0 +1,17 @@
+rule_files:
+  - ../../monitoring/base/victoriametrics/rules/converted/kube-storage-version-migrator-alertrule.yaml
+
+tests:
+  - interval: 1m
+    input_series:
+      - series: 'up{job="kube-storage-version-migrator-migrator"}'
+        values: '0+0x60'
+    alert_rule_test:
+      - eval_time: 60m
+        alertname: KubeStorageVersionMigratorMigratorDown
+        exp_alerts:
+          - exp_labels:
+              severity: error
+            exp_annotations:
+              runbook: TBD
+              summary: kube-storage-version-migrator migrator has disappeared.
