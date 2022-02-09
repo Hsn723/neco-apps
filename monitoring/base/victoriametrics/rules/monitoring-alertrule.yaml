@@ -176,3 +176,11 @@ spec:
           annotations:
             summary: grafana is down.
             runbook: TBD
+        - alert: AlertCheckTest
+          expr: |
+            absent(up{job="grafana"} == -1)
+          labels:
+            severity: error
+          for: 15m
+          annotations:
+            summary: test dummy alert
