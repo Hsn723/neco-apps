@@ -15,7 +15,10 @@ patchesJson6902:
   patch: |-
     - op: replace
       path: /spec/resources/osd/requests/cpu
-      value: 300m
+      value: 100m
+    - op: replace
+      path: /spec/resources/osd/requests/memory
+      value: 100Mi
     - op: replace
       path: /spec/resources/crashcollector/requests/cpu
       value: 300m
@@ -24,7 +27,7 @@ patchesJson6902:
       value: 3Gi
     - op: replace
       path: /spec/storage/storageClassDeviceSets/0/count
-      value: 3
+      value: 9
 - target:
     group: ceph.rook.io
     version: v1
@@ -34,7 +37,10 @@ patchesJson6902:
   patch: |-
     - op: replace
       path: /spec/resources/osd/requests/cpu
-      value: 300m
+      value: 100m
+    - op: replace
+      path: /spec/resources/osd/requests/memory
+      value: 100Mi
     - op: replace
       path: /spec/resources/crashcollector/requests/cpu
       value: 300m
@@ -56,7 +62,10 @@ patchesJson6902:
   patch: |-
     - op: replace
       path: /spec/resources/osd/requests/cpu
-      value: 300m
+      value: 100m
+    - op: replace
+      path: /spec/resources/osd/requests/memory
+      value: 100Mi
     - op: replace
       path: /spec/resources/crashcollector/requests/cpu
       value: 300m
