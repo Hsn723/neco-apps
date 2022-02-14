@@ -27,6 +27,9 @@ patchesJson6902:
     - op: replace
       path: /spec/storage/storageClassDeviceSets/0/volumeClaimTemplates/0/spec/resources/requests/storage
       value: 10Gi
+    - op: replace
+      path: /spec/cephVersion/image
+      value: quay.io/cybozu/ceph:16.2.7.0-asan1
 - target:
     group: ceph.rook.io
     version: v1
@@ -52,6 +55,9 @@ patchesJson6902:
     - op: replace
       path: /spec/storage/storageClassDeviceSets/1/volumeClaimTemplates/0/spec/resources/requests/storage
       value: 5Gi
+    - op: replace
+      path: /spec/cephVersion/image
+      value: quay.io/cybozu/ceph:16.2.7.0-asan1
 - target:
     group: apps
     version: v1

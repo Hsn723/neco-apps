@@ -494,6 +494,11 @@ Update `spec.cephVersion.image` field in CephCluster CR.
 - rook/base/ceph-object-store/cluster.yaml
 - rook/base/ceph-poc/cluster.yaml
 
+In gcp and stage0, the ceph container which is built with address sanitizer flag enabled is used.
+So update the image version in the following file in `quay.io/cybozu/ceph:X.Y.Z.W-asan` format.
+- rook/overlays/gcp/kustomization.yaml
+- rook/overlays/stage0/kustomization.yaml
+
 ## s3gw
 
 Update image tags as follows,

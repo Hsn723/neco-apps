@@ -4,3 +4,34 @@ resources:
   - ../../base
   - ceph-poc
   - ceph-object-store/httpproxy.yaml
+patchesJson6902:
+- target:
+    group: ceph.rook.io
+    version: v1
+    kind: CephCluster
+    name: ceph-object-store
+    namespace: ceph-object-store
+  patch: |-
+    - op: replace
+      path: /spec/cephVersion/image
+      value: quay.io/cybozu/ceph:16.2.7.0-asan
+- target:
+    group: ceph.rook.io
+    version: v1
+    kind: CephCluster
+    name: ceph-poc
+    namespace: ceph-poc
+  patch: |-
+    - op: replace
+      path: /spec/cephVersion/image
+      value: quay.io/cybozu/ceph:16.2.7.0-asan
+- target:
+    group: ceph.rook.io
+    version: v1
+    kind: CephCluster
+    name: ceph-ssd
+    namespace: ceph-ssd
+  patch: |-
+    - op: replace
+      path: /spec/cephVersion/image
+      value: quay.io/cybozu/ceph:16.2.7.0-asan
