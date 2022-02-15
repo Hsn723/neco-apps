@@ -37,4 +37,4 @@ spec:
       policies:
         - p, proj:dbre:admin, applications, *, dbre/*, allow
   sourceRepos:
-    - '*'
+    - https://github.com/cybozu-private/*

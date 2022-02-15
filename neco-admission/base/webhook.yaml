@@ -53,11 +53,6 @@ webhooks:
       operator: NotIn
       values:
       - "true"
-- name: vapplication.kb.io
-  clientConfig:
-    service:
-      name: neco-admission
-      namespace: kube-system
 - name: vdelete.kb.io
   clientConfig:
     service:

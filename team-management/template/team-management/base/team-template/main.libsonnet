@@ -9,5 +9,5 @@ function(settings, team)
   local maneki_allowed_namespaces = std.setDiff(std.set(utility.get_all_allowed_namespaces(settings)), std.set(utility.get_allowed_namespaces(settings, 'csa')));
   {
     'kustomization.yaml': kustomization_template(team, namespaces),
-    'project.yaml': if team == 'maneki' then project_template(team, std.uniq(maneki_team_namespaces + maneki_allowed_namespaces)) else project_template(team, std.uniq(namespaces + allowed_namespaces)),
+    'project.yaml': if team == 'maneki' then project_template(team, std.uniq(maneki_team_namespaces + maneki_allowed_namespaces), settings.repositories) else project_template(team, std.uniq(namespaces + allowed_namespaces), settings.repositories),
   } + std.foldl(function(x, y) x { [y + '.yaml']: namespace_template(settings, team, y) }, namespaces, {})

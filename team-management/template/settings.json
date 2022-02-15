@@ -269,5 +269,44 @@
         "development": "true"
       }
     }
+  },
+  "repositories": {
+    "csa": [
+      "https://github.com/cybozu-private/*"
+    ],
+    "cydec": [
+      "https://github.com/cybozu-private/*"
+    ],
+    "dbre": [
+      "https://github.com/cybozu-private/*"
+    ],
+    "ept": [
+      "https://github.com/cybozu-private/*"
+    ],
+    "garoon": [
+      "https://github.com/cybozu-private/*",
+      "https://github.com/garoon-private/*"
+    ],
+    "kintone-neco": [
+      "https://github.com/cybozu-private/*",
+      "https://github.com/kintone-private/*"
+    ],
+    "landsat": [
+      "https://github.com/cybozu-private/*"
+    ],
+    "maneki": [
+      "https://github.com/cybozu-private/*",
+      "https://github.com/garoon-private/*",
+      "https://github.com/kintone-private/*"
+    ],
+    "neco-guests": [
+      "https://github.com/cybozu-private/*"
+    ],
+    "network": [
+      "https://github.com/cybozu-private/*"
+    ],
+    "set": [
+      "https://github.com/cybozu-private/*"
+    ]
   }
 }

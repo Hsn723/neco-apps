@@ -5,7 +5,15 @@ metadata:
   namespace: argocd
 spec:
   sourceRepos:
-  - '*'
+  - 'https://github.com/cybozu-go/neco-apps'
+  - 'https://prometheus-community.github.io/helm-charts'
+  - 'https://github.com/cybozu-private/neco-apps-secret'
+  - 'https://topolvm.github.io/pvc-autoresizer'
+  - 'https://topolvm.github.io/topolvm'
+  - 'https://cybozu-go.github.io/accurate'
+  - 'https://cybozu-go.github.io/cattage'
+  - 'https://cybozu-go.github.io/moco'
+  - 'https://cybozu-go.github.io/tenet'
   destinations:
   - namespace: '*'
     server: '*'

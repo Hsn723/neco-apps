@@ -27,4 +27,4 @@ spec:
       policies:
         - p, proj:neco-guests:admin, applications, *, neco-guests/*, allow
   sourceRepos:
-    - '*'
+    - https://github.com/cybozu-private/*

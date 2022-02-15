@@ -29,4 +29,4 @@ spec:
       policies:
         - p, proj:landsat:admin, applications, *, landsat/*, allow
   sourceRepos:
-    - '*'
+    - https://github.com/cybozu-private/*

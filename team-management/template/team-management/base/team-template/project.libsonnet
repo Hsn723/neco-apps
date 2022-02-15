@@ -1,4 +1,4 @@
-function(team, namespaces) [
+function(team, namespaces, repositories) [
   {
     apiVersion: 'argoproj.io/v1alpha1',
     kind: 'AppProject',
@@ -7,9 +7,7 @@ function(team, namespaces) [
       namespace: 'argocd',
     },
     spec: {
-      sourceRepos: [
-        '*',
-      ],
+      sourceRepos: repositories[team],
       destinations: std.set([
         {
           namespace: 'sandbox',

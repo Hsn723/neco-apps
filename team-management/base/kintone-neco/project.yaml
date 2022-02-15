@@ -29,4 +29,5 @@ spec:
       policies:
         - p, proj:kintone-neco:admin, applications, *, kintone-neco/*, allow
   sourceRepos:
-    - '*'
+    - https://github.com/cybozu-private/*
+    - https://github.com/kintone-private/*

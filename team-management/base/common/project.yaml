@@ -103,7 +103,9 @@ spec:
         - p, proj:tenant-app-of-apps:tenant-apps, applications, get, tenant-app-of-apps/tenant-apps, allow
         - p, proj:tenant-app-of-apps:tenant-apps, applications, sync, tenant-app-of-apps/tenant-apps, allow
   sourceRepos:
-    - '*'
+    - https://github.com/cybozu-private/*
+    - https://github.com/garoon-private/*
+    - https://github.com/kintone-private/*
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -150,4 +152,4 @@ spec:
       policies:
         - p, proj:tenant-apps:admin, applications, *, tenant-apps/*, allow
   sourceRepos:
-    - '*'
+    - https://github.com/cybozu-private/neco-tenant-apps

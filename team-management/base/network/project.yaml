@@ -31,4 +31,4 @@ spec:
       policies:
         - p, proj:network:admin, applications, *, network/*, allow
   sourceRepos:
-    - '*'
+    - https://github.com/cybozu-private/*

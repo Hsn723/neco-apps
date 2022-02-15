@@ -7,10 +7,6 @@ resources:
 - rolebinding.yaml
 - serviceaccount.yaml
 - upstream/manifests.yaml
-configMapGenerator:
-  - name: neco-admission-config
-    files:
-      - config.yaml
 namespace: kube-system
 patchesStrategicMerge:
   - webhook.yaml
@@ -31,4 +27,4 @@ patches:
       value: neco-admission
 images:
   - name: quay.io/cybozu/neco-admission
-    newTag: 0.15.1
+    newTag: 0.17.0

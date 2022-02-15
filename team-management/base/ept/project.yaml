@@ -35,4 +35,4 @@ spec:
       policies:
         - p, proj:ept:admin, applications, *, ept/*, allow
   sourceRepos:
-    - '*'
+    - https://github.com/cybozu-private/*

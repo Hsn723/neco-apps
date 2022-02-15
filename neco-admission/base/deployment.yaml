@@ -56,8 +56,6 @@ spec:
         volumeMounts:
           - name: certs
             mountPath: /certs
-          - name: config
-            mountPath: /etc/neco-admission
         ports:
           - name: metrics
             containerPort: 8080
@@ -84,9 +82,6 @@ spec:
         - name: certs
           secret:
             secretName: neco-admission-webhook
-        - name: config
-          configMap:
-            name: neco-admission-config
 ---
 apiVersion: v1
 kind: Service

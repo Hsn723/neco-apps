@@ -1,10 +1,8 @@
 package test
 
 import (
-	"bytes"
 	_ "embed"
 	"encoding/json"
-	"text/template"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -29,9 +27,6 @@ var admissionHTTPProxyBadBastionYAML []byte
 
 //go:embed testdata/admission-httpproxy-annotated.yaml
 var admissionHTTPProxyAnnotatedYAML []byte
-
-//go:embed testdata/admission-application.yaml
-var admissionApplicationYAML string
 
 func testAdmission() {
 	It("should validate Calico NetworkPolicy", func() {
@@ -78,29 +73,6 @@ func testAdmission() {
 		By("updating HTTPProxy to change ingressClassName field")
 		stdout, stderr, err = ExecAtWithInput(boot0, admissionHTTPProxyBadBastionYAML, "kubectl", "apply", "-f", "-")
 		Expect(err).To(HaveOccurred(), "stdout: %s, stderr: %s", stdout, stderr)
-	})
-
-	It("should validate Application", func() {
-		By("creating Application which points to neco-apps repo and belongs to default project")
-		tmpl := template.Must(template.New("").Parse(admissionApplicationYAML))
-		type tmplParams struct {
-			Name    string
-			Project string
-			URL     string
-		}
-		buf := new(bytes.Buffer)
-		err := tmpl.Execute(buf, tmplParams{"valid", "default", "https://github.com/cybozu-go/neco-apps.git"})
-		Expect(err).NotTo(HaveOccurred())
-		stdout, stderr, err := ExecAtWithInput(boot0, buf.Bytes(), "kubectl", "apply", "-f", "-")
-		Expect(err).NotTo(HaveOccurred(), "stdout: %s, stderr: %s, err: %v", stdout, stderr, err)
-		ExecSafeAt(boot0, "kubectl", "delete", "application", "valid")
-
-		By("denying to create Application which points to invalid repo and belongs to default project")
-		buf.Reset()
-		err = tmpl.Execute(buf, tmplParams{"invalid", "default", "https://github.com/cybozu-go/invalid-apps.git"})
-		Expect(err).NotTo(HaveOccurred())
-		stdout, stderr, err = ExecAtWithInput(boot0, buf.Bytes(), "kubectl", "apply", "-f", "-")
-		Expect(err).To(HaveOccurred(), "stdout: %s, stderr: %s, err: %v", stdout, stderr, err)
 	})
 
 	It("should validate deletion", func() {

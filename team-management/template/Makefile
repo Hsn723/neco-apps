@@ -18,7 +18,7 @@ WGET := wget --retry-connrefused --no-verbose
 WGET_PATH := $(shell which wget || echo wget-install)
 
 .PHONY: all
-all: argocd-config neco-admission team-management teleport
+all: argocd-config team-management teleport
 
 write-%:
 	mkdir -p $(TEMP_DIR)
@@ -42,9 +42,6 @@ argocd-config:
 	rm -rf $(ROOT_DIR)/argocd-config/overlays/tokyo0/tenants/
 
 	$(MAKE) write-argocd-config
-
-.PHONY: neco-admission
-neco-admission: write-neco-admission
 
 .PHONY: team-management
 team-management:

@@ -32,4 +32,4 @@ spec:
       policies:
         - p, proj:csa:admin, applications, *, csa/*, allow
   sourceRepos:
-    - '*'
+    - https://github.com/cybozu-private/*

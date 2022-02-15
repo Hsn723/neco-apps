@@ -33,4 +33,5 @@ spec:
       policies:
         - p, proj:garoon:admin, applications, *, garoon/*, allow
   sourceRepos:
-    - '*'
+    - https://github.com/cybozu-private/*
+    - https://github.com/garoon-private/*

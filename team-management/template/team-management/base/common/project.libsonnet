@@ -8,7 +8,9 @@ function(apps, teams) [
     },
     spec: {
       sourceRepos: [
-        '*',
+        'https://github.com/cybozu-private/*',
+        'https://github.com/garoon-private/*',
+        'https://github.com/kintone-private/*',
       ],
       destinations: [
         {
@@ -53,7 +55,7 @@ function(apps, teams) [
     },
     spec: {
       sourceRepos: [
-        '*',
+        'https://github.com/cybozu-private/neco-tenant-apps',
       ],
       destinations: [
         {
