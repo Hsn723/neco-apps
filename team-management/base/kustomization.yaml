@@ -6,7 +6,6 @@ resources:
   - ./csa
   - ./cydec
   - ./dbre
-  - ./ept
   - ./garoon
   - ./kintone-neco
   - ./landsat
@@ -17,3 +16,4 @@ resources:
   - ./network
   - ./sandbox
   - ./set
+  - tenant-ept.yaml

@@ -5,7 +5,6 @@ patchesStrategicMerge:
   - project-csa.yaml
   - project-cydec.yaml
   - project-dbre.yaml
-  - project-ept.yaml
   - project-garoon.yaml
   - project-kintone-neco.yaml
   - project-landsat.yaml
@@ -13,5 +12,6 @@ patchesStrategicMerge:
   - project-neco-guests.yaml
   - project-network.yaml
   - project-set.yaml
+  - tenant-ept.yaml
 resources:
   - ../../base
