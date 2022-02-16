@@ -38,5 +38,6 @@ resources:
 - session-log.yaml
 - team-management.yaml
 - tenet.yaml
+- tenet-policy.yaml
 - teleport.yaml
 - topolvm.yaml
