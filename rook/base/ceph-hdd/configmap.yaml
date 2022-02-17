@@ -16,3 +16,7 @@ data:
     ;        1 pools have many more objects per pg than average
     ; ```
     mon_pg_warn_max_object_skew = 0
+    [mon]
+    bluefs_buffered_io = false
+    [osd]
+    bluefs_buffered_io = false
