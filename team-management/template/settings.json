@@ -14,6 +14,7 @@
       "app-mysql-tenant-service"
     ],
     "ept": [
+      "app-ept-grpshuffle",
       "app-ept-monitoring",
       "app-ept-plantuml",
       "app-ept-wiki"
@@ -135,6 +136,15 @@
       },
       "repo": "https://github.com/cybozu-private/network-apps.git",
       "team": "network"
+    },
+    "sgre-apps": {
+      "destinations": {
+        "osaka0": "release",
+        "stage0": "stage",
+        "tokyo0": "release"
+      },
+      "repo": "https://github.com/cybozu-private/sgre-apps.git",
+      "team": "maneki"
     },
     "slash-apps": {
       "destinations": {
