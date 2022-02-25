@@ -14,10 +14,10 @@ patchesJson6902:
   patch: |-
     - op: replace
       path: /spec/resources/osd/requests/cpu
-      value: 300m
+      value: 100m
     - op: replace
       path: /spec/resources/crashcollector/requests/cpu
-      value: 300m
+      value: 100m
     - op: replace
       path: /spec/mon/volumeClaimTemplate/spec/resources/requests/storage
       value: 3Gi
@@ -36,10 +36,10 @@ patchesJson6902:
   patch: |-
     - op: replace
       path: /spec/resources/osd/requests/cpu
-      value: 300m
+      value: 100m
     - op: replace
       path: /spec/resources/crashcollector/requests/cpu
-      value: 300m
+      value: 100m
     - op: replace
       path: /spec/mon/volumeClaimTemplate/spec/resources/requests/storage
       value: 3Gi

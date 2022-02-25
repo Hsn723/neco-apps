@@ -38,7 +38,7 @@ var decUnstructured = yaml.NewDecodingSerializer(unstructured.UnstructuredJSONSc
 var setupTeleportYAML string
 
 const numControlPlanes = 3
-const numWorkers = 6
+const numWorkers = 13
 const numNodes = numControlPlanes + numWorkers
 
 func prepareNodes() {
