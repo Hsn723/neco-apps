@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample
+  namespace: my-team-child
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: my-team
+  source:
+    repoURL: https://github.com/cybozu-go/neco-apps.git
+    targetRevision: main
+    path: test/testdata/testhttpd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: my-team-child
+  syncPolicy:
+    automated:
+      prune: true
