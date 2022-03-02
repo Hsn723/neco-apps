@@ -79,6 +79,7 @@ func prepareTest() {
 	Context("preparing rook-ceph", prepareRookCeph)
 	Context("preparing argocd-ingress", prepareArgoCDIngress)
 	Context("preparing contour", prepareContour)
+	Context("preparing registry", prepareRegistry)
 	Context("preparing elastic", prepareElastic)
 	Context("preparing local-pv-provisioner", prepareLocalPVProvisioner)
 	Context("preparing metallb", prepareMetalLB)
@@ -93,6 +94,7 @@ func prepareTest() {
 	Context("preparing sealed-secret", prepareSealedSecret)
 	Context("preparing pod-security-admission", preparePodSecurityAdmission)
 	Context("preparing accurate", prepareAccurate)
+	Context("preparing cattage", prepareCattage)
 	Context("preparing meows", prepareMeows)
 	Context("preparing tenet", prepareTenet)
 	Context("preparing network-policy", prepareNetworkPolicy) // this must be the last preparation.
@@ -104,6 +106,7 @@ func runTest() {
 	Context("network-policy", testNetworkPolicy)
 	Context("metallb", testMetalLB)
 	Context("contour", testContour)
+	Context("registry", testRegistry)
 	Context("machines-endpoints", testMachinesEndpoints)
 	Context("kube-state-metrics", testKubeStateMetrics)
 	Context("logging", testLogging)
@@ -130,6 +133,7 @@ func runTest() {
 	Context("meows", testMeows)
 	Context("session-log", testSessionLog)
 	Context("accurate", testAccurate)
+	Context("cattage", testCattage)
 	Context("tenet", testTenet)
 	Context("hubble", testHubble)
 }
