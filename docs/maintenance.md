@@ -36,7 +36,7 @@ How to maintain neco-apps
 - [pod-security-admission](#pod-security-admission)
 - [prometheus-adapter](#prometheus-adapter)
 - [pvc-autoresizer](#pvc-autoresizer)
-- [registry (Container Registry Mirror)](#registry)
+- [registry (Container Registry Mirror)](#registry-container-registry-mirror)
 - [rook](#rook)
   - [ceph](#ceph)
 - [s3gw](#s3gw)
@@ -57,6 +57,8 @@ $ git diff
 ```
 
 ## argocd
+
+note: Argo CD v2.3.0 will incorporate Argo CD Notifications. We have to modify argocd-notifications deployment at that time.
 
 1. Check [releases](https://github.com/argoproj/argo-cd/releases) for changes.
 2. Check [upgrading overview](https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/upgrading/overview.md) when upgrading major or minor version.
@@ -477,7 +479,7 @@ $ make update-pvc-autoresizer CHART_VERSION=0.3.2
 $ git diff
 ```
 
-## registry
+## registry (Container Registry Mirror)
 
 Check [the release notes](https://github.com/distribution/distribution/releases).
 
