@@ -22,3 +22,4 @@ data:
     log_to_stderr = true
     err_to_stderr = true
     log_file =
+    bluefs_buffered_io = false
