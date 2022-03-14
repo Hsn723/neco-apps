@@ -22,7 +22,6 @@ patchesStrategicMerge:
 - kube-storage-version-migrator.yaml
 - local-pv-provisioner.yaml
 - logging.yaml
-- metallb.yaml
 - monitoring.yaml
 - namespaces.yaml
 - neco-admission.yaml

@@ -19,7 +19,6 @@ resources:
 - local-pv-provisioner.yaml
 - logging.yaml
 - meows.yaml
-- metallb.yaml
 - moco.yaml
 - monitoring.yaml
 - namespaces.yaml

@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - ../../base
 - argocd-config.yaml
+- metallb.yaml
 - tenants
 patchesStrategicMerge:
 - argocd-ingress.yaml
@@ -11,7 +12,6 @@ patchesStrategicMerge:
 - cert-manager.yaml
 - coil.yaml
 - external-dns.yaml
-- metallb.yaml
 - monitoring.yaml
 - network-policy.yaml
 - registry-elastic.yaml
