@@ -533,9 +533,14 @@ data:
     - key: node.cybozu.io/cluster-not-ready
       operator: Exists
   ROOK_CEPH_COMMANDS_TIMEOUT_SECONDS: "300"
+  ROOK_CSI_ATTACHER_IMAGE: quay.io/cybozu/csi-attacher:dev
   ROOK_CSI_ENABLE_CEPHFS: "false"
   ROOK_CSI_ENABLE_GRPC_METRICS: "false"
   ROOK_CSI_ENABLE_RBD: "true"
+  ROOK_CSI_PROVISIONER_IMAGE: quay.io/cybozu/csi-provisioner:dev
+  ROOK_CSI_REGISTRAR_IMAGE: quay.io/cybozu/csi-node-driver-registrar:dev
+  ROOK_CSI_RESIZER_IMAGE: quay.io/cybozu/csi-resizer:dev
+  ROOK_CSI_SNAPSHOTTER_IMAGE: quay.io/cybozu/csi-snapshotter:dev
   ROOK_LOG_LEVEL: INFO
   ROOK_OBC_WATCH_OPERATOR_NAMESPACE: "true"
 kind: ConfigMap
