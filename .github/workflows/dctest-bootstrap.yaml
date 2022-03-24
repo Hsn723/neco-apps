@@ -1,0 +1,50 @@
+name: dctest-bootstrap
+on:
+  workflow_call:
+    inputs:
+      feature-branch:
+        description: ''
+        required: false
+        default: false
+        type: boolean
+    secrets:
+      GCLOUD_SERVICE_ACCOUNT:
+        required: true
+      QUAY_PASSWORD:
+        required: true
+      NECO_GITHUB_TOKEN:
+        required: true
+      MEOWS_SECRET:
+        required: true
+      CYBOZU_PRIVATE_REPO_READ_PAT:
+        required: true
+defaults:
+  run:
+    shell: sh
+jobs:
+  dctest-bootstrap:
+    runs-on: [self-hosted, meows-runner/neco-apps-runner]
+    steps:
+      - run: job-started
+      - uses: actions/checkout@v3
+      - name: Extract branch name
+        shell: bash
+        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        id: extract_branch
+      - name: bootstrap
+        uses: ./.github/actions/dctest
+        with:
+          target-branch: ${{ github.head_ref || steps.extract_branch.outputs.branch }}
+          neco-branch: ${{ (inputs.feature-branch && steps.extract_branch.outputs.branch ) || 'release' }}
+        env:
+          GCLOUD_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_SERVICE_ACCOUNT }}
+          QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+          NECO_GITHUB_TOKEN: ${{ secrets.NECO_GITHUB_TOKEN }}
+          MEOWS_SECRET: ${{ secrets.MEOWS_SECRET }}
+          CYBOZU_PRIVATE_REPO_READ_PAT: ${{ secrets.CYBOZU_PRIVATE_REPO_READ_PAT }}
+      - if: success()
+        run: job-success
+      - if: cancelled()
+        run: job-cancelled
+      - if: failure()
+        run: job-failure

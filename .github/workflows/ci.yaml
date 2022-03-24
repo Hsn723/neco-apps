@@ -1,0 +1,85 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+defaults:
+  run:
+    shell: sh
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      - uses: actions/cache@v3
+        with:
+          path: download
+          key: ${{ runner.os }}-test-download-${{ hashFiles('team-management/template/Makefile') }}-${{ hashFiles('test/Makefile') }}
+          restore-keys: ${{ runner.os }}-test-download-
+      - name: Setup team-management tools
+        run: make -C team-management/template setup SUDO=
+      - name: Setup test tools
+        run: make -C test setup SUDO=
+      - run: |
+          make -C team-management/template validation
+      - name: Check diff
+        run: |
+          make test-generate
+          git diff --exit-code
+      - run: make -C test test
+  dctest-bootstrap:
+    uses: ./.github/workflows/dctest-bootstrap.yaml
+    needs: test
+    secrets:
+      GCLOUD_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_SERVICE_ACCOUNT }}
+      QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+      NECO_GITHUB_TOKEN: ${{ secrets.NECO_GITHUB_TOKEN }}
+      MEOWS_SECRET: ${{ secrets.MEOWS_SECRET }}
+      CYBOZU_PRIVATE_REPO_READ_PAT: ${{ secrets.CYBOZU_PRIVATE_REPO_READ_PAT }}
+  dctest-upgrade:
+    uses: ./.github/workflows/dctest-upgrade.yaml
+    needs: test
+    secrets:
+      GCLOUD_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_SERVICE_ACCOUNT }}
+      QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+      NECO_GITHUB_TOKEN: ${{ secrets.NECO_GITHUB_TOKEN }}
+      MEOWS_SECRET: ${{ secrets.MEOWS_SECRET }}
+      CYBOZU_PRIVATE_REPO_READ_PAT: ${{ secrets.CYBOZU_PRIVATE_REPO_READ_PAT }}
+  create-pull-request-stage:
+    runs-on: ubuntu-20.04
+    needs:
+      - dctest-bootstrap
+      - dctest-upgrade
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/prepare-git
+      - name: Check diff
+        run: |
+          git fetch -t origin
+          diffs=$(git diff --name-only main origin/stage)
+          if [ "$diffs" = "" ]; then touch .skip; exit 0; fi
+          printf "%s\n" "$diffs"
+      - name: Create a pull request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -f .skip ]; then exit 0; fi
+          BRANCH_NAME="stage-$(date +%Y.%m.%d)-${{ github.run_id }}"
+          git checkout -b op-${BRANCH_NAME} origin/stage
+          git merge --no-edit main
+          git push origin op-${BRANCH_NAME}
+          gh pr create --title "[CI] Stage ${BRANCH_NAME}" --body "" --base=stage --head=op-${BRANCH_NAME}
+      - name: Create a pull request for neco-apps-secret staging branch
+        env:
+          CIRCLE_API_TOKEN: ${{ secrets.CIRCLE_API_TOKEN }}
+        run: |
+          if [ -f .skip ]; then exit 0; fi
+          ./bin/run-neco-apps-secret-ci.sh

@@ -1,0 +1,81 @@
+name: 'dctest'
+description: 'run dctest'
+inputs:
+  target:
+    description: 'dctest or dctest-reboot or dctest-upgrade'
+    required: false
+    default: 'dctest'
+  base-branch:
+    description: ''
+    required: false
+    default: 'main'
+  target-branch:
+    description: ''
+    required: false
+    default: 'main'
+  neco-branch:
+    description: ''
+    required: false
+    default: 'release'
+
+runs:
+  using: composite
+  steps:
+    - name: checkout neco
+      run: |
+        git clone --depth 1 -b ${{ inputs.neco-branch }} https://github.com/cybozu-go/neco.git ${NECO_DIR}
+        REV=$(git -C ${NECO_DIR} rev-parse HEAD)
+        echo "revision: ${REV}"
+      shell: sh
+    - name: watch all pod logs
+      id: watch-all-pod-logs
+      run: |
+        cd ${NECO_DIR}
+        ./bin/watch_podlogs_directly > /tmp/pods.log 2>&1 &
+        WATCH_PROCESS_ID=$!
+        echo "WATCH_PROCESS_ID=${WATCH_PROCESS_ID}" >> $GITHUB_ENV
+      shell: sh
+    - name: neco bootstrap
+      run: |
+        echo ${QUAY_PASSWORD} > ${NECO_DIR}/secrets
+        echo ${NECO_GITHUB_TOKEN} > ${NECO_DIR}/github-token
+        make -C ${NECO_DIR} clean
+        make -C ${NECO_DIR}/dctest setup
+        make -C ${NECO_DIR}/dctest run-placemat-inside-container MENU_ARG=menu-ss.yml
+        make -C ${NECO_DIR}/dctest test SUITE=bootstrap
+      shell: sh
+    - name: neco-apps ${{ inputs.target }}
+      run: |
+        git clone -b ${{ inputs.target-branch }} "https://cybozu-neco:${CYBOZU_PRIVATE_REPO_READ_PAT}@github.com/cybozu-go/neco-apps.git" ${NECO_APPS_DIR}
+        REV=$(git -C ${NECO_APPS_DIR} rev-parse HEAD)
+        echo "revision: ${REV}"
+        export CIRCLE_BUILD_NUM="${{ github.run_id }}${{ github.run_attempt }}"
+        echo "CIRCLE_BUILD_NUM=${CIRCLE_BUILD_NUM}"
+        # actually use github.sha
+        export SHA1=$(git -C ${NECO_APPS_DIR} rev-parse HEAD)
+        echo "${GCLOUD_SERVICE_ACCOUNT}" > ${NECO_APPS_DIR}/test/account.json
+        echo "${CYBOZU_PRIVATE_REPO_READ_PAT}" > ${NECO_APPS_DIR}/test/cybozu_private_repo_read_pat
+        curl -sSLf -o ${NECO_APPS_DIR}/test/lets.crt https://letsencrypt.org/certs/fakelerootx1.pem
+        echo ${MEOWS_SECRET} > ${NECO_APPS_DIR}/test/meows-secret.json
+        make -C ${NECO_APPS_DIR}/test setup
+        make -C ${NECO_APPS_DIR}/test COMMIT_ID=${SHA1} BASE_BRANCH=${{ inputs.base-branch }} ${{ inputs.target }} SUITE=prepare
+        make -C ${NECO_APPS_DIR}/test COMMIT_ID=${SHA1} BASE_BRANCH=${{ inputs.base-branch }} ${{ inputs.target }} SUITE=run
+        make -C ${NECO_APPS_DIR}/test COMMIT_ID=${SHA1} BASE_BRANCH=${{ inputs.base-branch }} ${{ inputs.target }} SUITE=alertcheck
+      shell: bash
+    - name: kill watch all pod logs
+      if: always()
+      run: kill ${{ env.WATCH_PROCESS_ID }}
+      shell: sh
+    - uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: ${{ inputs.target }}_${{ inputs.base-branch }}_pods.log
+        path: /tmp/pods.log
+    - uses: actions/upload-artifact@v3
+      with:
+        name: ${{ inputs.target }}_${{ inputs.base-branch }}_junit.xml
+        path: /tmp/junit.xml
+    - uses: actions/upload-artifact@v3
+      with:
+        name: ${{ inputs.target }}_${{ inputs.base-branch }}_image_list.txt
+        path: /tmp/image_list.txt
