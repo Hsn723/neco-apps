@@ -3,7 +3,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./common
-  - ./cydec
   - ./dbre
   - ./garoon
   - ./landsat
@@ -14,6 +13,7 @@ resources:
   - ./network
   - ./sandbox
   - tenant-csa.yaml
+  - tenant-cydec.yaml
   - tenant-ept.yaml
   - tenant-izumo.yaml
   - tenant-kintone-neco.yaml
