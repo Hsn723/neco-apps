@@ -285,12 +285,22 @@ func testSetup() {
 		Expect(err).ShouldNot(HaveOccurred())
 
 		By("add a credential for cybozu-private")
-		// Change the reference of ArgoCD to cybozu-private/neco-apps, then delete here.
-		_, stderr, err := ExecAtWithInput(boot0, data, "bash", "-c", "'read -sr PASSWORD; argocd repocreds add https://github.com/cybozu-go/neco-apps --username cybozu-neco --password=${PASSWORD}'")
-		Expect(err).ShouldNot(HaveOccurred(), "stderr=%s", stderr)
+		Eventually(func() error {
+			// Change the reference of ArgoCD to cybozu-private/neco-apps, then delete here.
+			_, _, err := ExecAtWithInput(boot0, data, "bash", "-c", "'read -sr PASSWORD; argocd repocreds add https://github.com/cybozu-go/neco-apps --username cybozu-neco --password=${PASSWORD}'")
+			if err != nil {
+				return fmt.Errorf("failed to exec 'argocd repocreds add https://github.com/cybozu-go/neco-apps --username cybozu-neco --password=***'")
+			}
+			return nil
+		}).Should(Succeed())
 
-		_, stderr, err = ExecAtWithInput(boot0, data, "bash", "-c", "'read -sr PASSWORD; argocd repocreds add https://github.com/cybozu-private/ --username cybozu-neco --password=${PASSWORD}'")
-		Expect(err).ShouldNot(HaveOccurred(), "stderr=%s", stderr)
+		Eventually(func() error {
+			_, _, err = ExecAtWithInput(boot0, data, "bash", "-c", "'read -sr PASSWORD; argocd repocreds add https://github.com/cybozu-private/ --username cybozu-neco --password=${PASSWORD}'")
+			if err != nil {
+				return fmt.Errorf("failed to exec 'argocd repocreds add https://github.com/cybozu-private/ --username cybozu-neco --password=***'")
+			}
+			return nil
+		}).Should(Succeed())
 	})
 
 	It("should setup applications", func() {
