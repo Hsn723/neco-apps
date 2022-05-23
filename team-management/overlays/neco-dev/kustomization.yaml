@@ -4,6 +4,7 @@ kind: Kustomization
 patchesStrategicMerge:
   - tenant-csa.yaml
   - tenant-cydec.yaml
+  - tenant-dbre.yaml
   - tenant-ept.yaml
   - tenant-izumo.yaml
   - tenant-kintone-neco.yaml

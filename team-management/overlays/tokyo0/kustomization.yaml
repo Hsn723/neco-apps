@@ -2,7 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 patchesStrategicMerge:
-  - dev-dbre.yaml
   - dev-garoon.yaml
   - dev-team-landsat.yaml
   - dev-maneki.yaml
@@ -10,6 +9,7 @@ patchesStrategicMerge:
   - dev-network.yaml
   - tenant-csa.yaml
   - tenant-cydec.yaml
+  - tenant-dbre.yaml
   - tenant-ept.yaml
   - tenant-izumo.yaml
   - tenant-kintone-neco.yaml

@@ -608,6 +608,23 @@ func applyAndWaitForApplications(commitID string) {
 					}
 
 					// TODO: remove this block after release the PR bellow
+					// https://github.com/cybozu-go/neco-apps/pull/2624
+					_, _, err = ExecAt(boot0, "kubectl", "get", "ns", "team-dbre")
+					if err == nil {
+						fmt.Printf("%s remove team-dbre app.kubernetes.io/instance label: syncStatus=%s, healthStatus=%s\n",
+							time.Now().Format(time.RFC3339), app.Status.Sync.Status, app.Status.Health.Status)
+						stdout, stderr, err := ExecAt(boot0, "kubectl", "label", "ns", "team-dbre", "app.kubernetes.io/instance-")
+						Expect(err).ShouldNot(HaveOccurred(), "failed to unlabel: stdout=%s, stderr=%s", stdout, stderr)
+					}
+					_, _, err = ExecAt(boot0, "kubectl", "get", "ns", "dev-dbre")
+					if err == nil {
+						fmt.Printf("%s remove dev-dbre app.kubernetes.io/instance label: syncStatus=%s, healthStatus=%s\n",
+							time.Now().Format(time.RFC3339), app.Status.Sync.Status, app.Status.Health.Status)
+						stdout, stderr, err := ExecAt(boot0, "kubectl", "label", "ns", "dev-dbre", "app.kubernetes.io/instance-")
+						Expect(err).ShouldNot(HaveOccurred(), "failed to unlabel: stdout=%s, stderr=%s", stdout, stderr)
+					}
+
+					// TODO: remove this block after release the PR bellow
 					// https://github.com/cybozu-go/neco-apps/pull/2623
 					_, _, err = ExecAt(boot0, "kubectl", "get", "ns", "team-izumo")
 					if err == nil {

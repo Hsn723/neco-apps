@@ -15,12 +15,6 @@ spec:
     warn: false
   roles:
     - groups:
-        - cybozu-private:dbre
-      name: dbre-apps
-      policies:
-        - p, proj:tenant-app-of-apps:dbre-apps, applications, get, tenant-app-of-apps/dbre-apps, allow
-        - p, proj:tenant-app-of-apps:dbre-apps, applications, sync, tenant-app-of-apps/dbre-apps, allow
-    - groups:
         - cybozu-private:maneki
       name: elasticsearch-apps
       policies:
