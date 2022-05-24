@@ -29,6 +29,17 @@ spec:
               app: rook-ceph-rgw
               rook_object_store: ceph-poc-object-store-ssd-index
           topologyKey: topology.kubernetes.io/zone
+      tolerations:
+      # Temporary configuration for storage performance measurement
+      - key: csa/exclude_noisy_neighbor
+        operator: Exists
+        effect: NoExecute
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: csa.cybozu-ne.co/exclude_noisy_neighbor
+              operator: Exists
     resources:
       requests:
         cpu: "500m"
