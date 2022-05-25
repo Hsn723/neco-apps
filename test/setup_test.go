@@ -287,17 +287,17 @@ func testSetup() {
 		By("add a credential for cybozu-private")
 		Eventually(func() error {
 			// Change the reference of ArgoCD to cybozu-private/neco-apps, then delete here.
-			_, _, err := ExecAtWithInput(boot0, data, "bash", "-c", "'read -sr PASSWORD; argocd repocreds add https://github.com/cybozu-go/neco-apps --username cybozu-neco --password=${PASSWORD}'")
+			_, _, err := ExecAtWithInput(boot0, data, "bash", "-c", "'read -sr PASSWORD; argocd repocreds add https://github.com/cybozu-go/neco-apps --username cybozu-neco --password=${PASSWORD} --upsert'")
 			if err != nil {
-				return fmt.Errorf("failed to exec 'argocd repocreds add https://github.com/cybozu-go/neco-apps --username cybozu-neco --password=***'")
+				return fmt.Errorf("failed to exec 'argocd repocreds add  https://github.com/cybozu-go/neco-apps --username cybozu-neco --password=*** --upsert'")
 			}
 			return nil
 		}).Should(Succeed())
 
 		Eventually(func() error {
-			_, _, err = ExecAtWithInput(boot0, data, "bash", "-c", "'read -sr PASSWORD; argocd repocreds add https://github.com/cybozu-private/ --username cybozu-neco --password=${PASSWORD}'")
+			_, _, err = ExecAtWithInput(boot0, data, "bash", "-c", "'read -sr PASSWORD; argocd repocreds add https://github.com/cybozu-private/ --username cybozu-neco --password=${PASSWORD} --upsert'")
 			if err != nil {
-				return fmt.Errorf("failed to exec 'argocd repocreds add https://github.com/cybozu-private/ --username cybozu-neco --password=***'")
+				return fmt.Errorf("failed to exec 'argocd repocreds add https://github.com/cybozu-private/ --username cybozu-neco --password=*** --upsert'")
 			}
 			return nil
 		}).Should(Succeed())
