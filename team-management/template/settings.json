@@ -1,8 +1,5 @@
 {
   "allowed_namespaces": {
-    "cydec": [
-      "app-gorush"
-    ],
     "dbre": [
       "app-cybozu-com-mysql",
       "app-cybozu-com-mysql-replica",
@@ -39,15 +36,6 @@
     ]
   },
   "apps": {
-    "cydec-apps": {
-      "destinations": {
-        "osaka0": "release",
-        "stage0": "stage",
-        "tokyo0": "release"
-      },
-      "repo": "https://github.com/cybozu-private/cydec-apps",
-      "team": "cydec"
-    },
     "dbre-apps": {
       "destinations": {
         "osaka0": "release",
@@ -65,15 +53,6 @@
       },
       "repo": "https://github.com/cybozu-private/elasticsearch-apps.git",
       "team": "maneki"
-    },
-    "file-type-detector-apps": {
-      "destinations": {
-        "osaka0": "release",
-        "stage0": "main",
-        "tokyo0": "release"
-      },
-      "repo": "https://github.com/cybozu-private/file-type-detector-apps.git",
-      "team": "cydec"
     },
     "garoon-apps": {
       "destinations": {
@@ -129,15 +108,6 @@
       "repo": "https://github.com/cybozu-private/sgre-apps.git",
       "team": "maneki"
     },
-    "slash-apps": {
-      "destinations": {
-        "osaka0": "release",
-        "stage0": "master",
-        "tokyo0": "release"
-      },
-      "repo": "https://github.com/cybozu-private/slash-apps",
-      "team": "cydec"
-    },
     "tenant-apps": {
       "destinations": {
         "osaka0": "release",
@@ -146,30 +116,10 @@
       },
       "repo": "https://github.com/cybozu-private/neco-tenant-apps.git",
       "team": ""
-    },
-    "worker-apps": {
-      "destinations": {
-        "osaka0": "release",
-        "stage0": "main",
-        "tokyo0": "release"
-      },
-      "repo": "https://github.com/cybozu-private/worker-apps",
-      "team": "cydec"
     }
   },
   "migrating_teams": [],
   "namespaces": {
-    "cydec": {
-      "app-cydec": {
-        "accurate.cybozu.com/template": "init-template",
-        "accurate.cybozu.com/type": "root"
-      },
-      "dev-cydec": {
-        "accurate.cybozu.com/template": "init-template",
-        "accurate.cybozu.com/type": "root",
-        "development": "true"
-      }
-    },
     "dbre": {
       "dev-dbre": {
         "accurate.cybozu.com/template": "init-template",
@@ -256,6 +206,54 @@
             "team": "csa"
           },
           "name": "app-csa"
+        }
+      ]
+    },
+    "cydec": {
+      "argocd": {
+        "repositories": [
+          "https://github.com/cybozu-private/*"
+        ]
+      },
+      "rootNamespaces": [
+        {
+          "labels": {
+            "team": "cydec"
+          },
+          "name": "app-cydec"
+        },
+        {
+          "labels": {
+            "team": "cydec"
+          },
+          "name": "team-cydec"
+        },
+        {
+          "labels": {
+            "team": "cydec"
+          },
+          "name": "team-slash"
+        },
+        {
+          "labels": {
+            "development": "true",
+            "team": "cydec"
+          },
+          "name": "dev-cydec"
+        },
+        {
+          "labels": {
+            "development": "true",
+            "team": "cydec"
+          },
+          "name": "dev-team-cydec"
+        },
+        {
+          "labels": {
+            "development": "true",
+            "team": "cydec"
+          },
+          "name": "dev-team-slash"
         }
       ]
     },

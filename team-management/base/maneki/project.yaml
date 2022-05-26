@@ -14,8 +14,6 @@ spec:
       server: '*'
     - namespace: app-cybozu-com-mysql-restore
       server: '*'
-    - namespace: app-cydec
-      server: '*'
     - namespace: app-dashboard-server-db
       server: '*'
     - namespace: app-dbre-monitoring
@@ -33,8 +31,6 @@ spec:
     - namespace: app-garoon-monitoring
       server: '*'
     - namespace: app-garoon-static
-      server: '*'
-    - namespace: app-gorush
       server: '*'
     - namespace: app-kodama
       server: '*'
