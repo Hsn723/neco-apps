@@ -8,16 +8,6 @@ spec:
   destinations:
     - namespace: app-comconv-earthlab
       server: '*'
-    - namespace: app-cybozu-com-mysql
-      server: '*'
-    - namespace: app-cybozu-com-mysql-replica
-      server: '*'
-    - namespace: app-cybozu-com-mysql-restore
-      server: '*'
-    - namespace: app-dashboard-server-db
-      server: '*'
-    - namespace: app-dbre-monitoring
-      server: '*'
     - namespace: app-elasticsearch
       server: '*'
     - namespace: app-endpoint-discovery
@@ -48,8 +38,6 @@ spec:
       server: '*'
     - namespace: app-monitoring-elasticstack
       server: '*'
-    - namespace: app-mysql-tenant-service
-      server: '*'
     - namespace: app-network
       server: '*'
     - namespace: app-network-*
@@ -71,8 +59,6 @@ spec:
     - namespace: maneki
       server: '*'
     - namespace: sandbox
-      server: '*'
-    - namespace: team-dbre
       server: '*'
     - namespace: team-landsat
       server: '*'

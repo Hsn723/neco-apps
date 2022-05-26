@@ -1,13 +1,5 @@
 {
   "allowed_namespaces": {
-    "dbre": [
-      "app-cybozu-com-mysql",
-      "app-cybozu-com-mysql-replica",
-      "app-cybozu-com-mysql-restore",
-      "app-dashboard-server-db",
-      "app-dbre-monitoring",
-      "app-mysql-tenant-service"
-    ],
     "garoon": [
       "app-garoon-monitoring",
       "app-garoon-static"
@@ -36,15 +28,6 @@
     ]
   },
   "apps": {
-    "dbre-apps": {
-      "destinations": {
-        "osaka0": "release",
-        "stage0": "stage",
-        "tokyo0": "release"
-      },
-      "repo": "https://github.com/cybozu-private/dbre-apps",
-      "team": "dbre"
-    },
     "elasticsearch-apps": {
       "destinations": {
         "osaka0": "release",
@@ -120,19 +103,6 @@
   },
   "migrating_teams": [],
   "namespaces": {
-    "dbre": {
-      "dev-dbre": {
-        "accurate.cybozu.com/template": "init-template",
-        "accurate.cybozu.com/type": "root",
-        "development": "true",
-        "pod-security.cybozu.com/policy": "traceable"
-      },
-      "team-dbre": {
-        "accurate.cybozu.com/template": "init-template",
-        "accurate.cybozu.com/type": "root",
-        "pod-security.cybozu.com/policy": "traceable"
-      }
-    },
     "garoon": {
       "app-garoon": {
         "accurate.cybozu.com/template": "init-template",
@@ -254,6 +224,30 @@
             "team": "cydec"
           },
           "name": "dev-team-slash"
+        }
+      ]
+    },
+    "dbre": {
+      "argocd": {
+        "repositories": [
+          "https://github.com/cybozu-private/*"
+        ]
+      },
+      "rootNamespaces": [
+        {
+          "labels": {
+            "pod-security.cybozu.com/policy": "traceable",
+            "team": "dbre"
+          },
+          "name": "team-dbre"
+        },
+        {
+          "labels": {
+            "development": "true",
+            "pod-security.cybozu.com/policy": "traceable",
+            "team": "dbre"
+          },
+          "name": "dev-dbre"
         }
       ]
     },

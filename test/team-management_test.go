@@ -276,8 +276,9 @@ func isPrivileged(team string) bool {
 
 var teamsNotManagedByManeki = []string{
 	"csa",
-	"ept",
 	"cydec",
+	"dbre",
+	"ept",
 	"izumo",
 }
 
