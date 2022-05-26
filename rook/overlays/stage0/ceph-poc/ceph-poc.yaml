@@ -1074,6 +1074,12 @@ spec:
   gateway:
     instances: 3
     placement:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: csa.cybozu-ne.co/exclude_noisy_neighbor
+              operator: Exists
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
         - labelSelector:
@@ -1081,6 +1087,10 @@ spec:
               app: rook-ceph-rgw
               rook_object_store: ceph-poc-object-store-ssd-index
           topologyKey: topology.kubernetes.io/zone
+      tolerations:
+      - effect: NoExecute
+        key: csa/exclude_noisy_neighbor
+        operator: Exists
     port: 80
     resources:
       requests:
