@@ -69,11 +69,14 @@ update-customer-egress:
 	sed -e 's/internet-egress/customer-egress/g' \
 		-e 's,{{ .squid }},quay.io/cybozu/squid,g' \
 		-e 's,{{ index . "cke-unbound" }},quay.io/cybozu/unbound,g' \
+		-e 's,{{ index . "cke-unbound_exporter" }},quay.io/cybozu/unbound_exporter,g' \
 		-e '/nodePort: 30128/d' customer-egress/base/neco/squid.yaml > customer-egress/base/squid.yaml
 	$(call get-latest-tag,squid)
 	sed -i -E '/name:.*squid$$/!b;n;s/newTag:.*$$/newTag: $(latest_tag)/' customer-egress/base/kustomization.yaml
 	$(call get-latest-tag,unbound)
 	sed -i -E '/name:.*unbound$$/!b;n;s/newTag:.*$$/newTag: $(latest_tag)/' customer-egress/base/kustomization.yaml
+	$(call get-latest-tag,unbound_exporter)
+	sed -i -E '/name:.*unbound_exporter$$/!b;n;s/newTag:.*$$/newTag: $(latest_tag)/' customer-egress/base/kustomization.yaml
 
 .PHONY: update-eck
 update-eck:

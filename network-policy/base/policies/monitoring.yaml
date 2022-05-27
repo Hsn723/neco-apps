@@ -68,6 +68,10 @@ spec:
     - ports:
       - port: "10249"
         protocol: TCP
+    # unbound_exporter in node-dns
+    - ports:
+      - port: "9167"
+        protocol: TCP
   - toCIDR:
     # Node network
     # CIDR based rule only applies to nodes outside the cluster including boot servers

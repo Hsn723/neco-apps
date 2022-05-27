@@ -1,0 +1,27 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMPodScrape
+metadata:
+  name: node-dns-unbound
+  namespace: monitoring
+spec:
+  namespaceSelector:
+    matchNames: [kube-system]
+  selector:
+    matchLabels:
+      cke.cybozu.com/appname: node-dns
+  podMetricsEndpoints:
+  - relabelConfigs:
+      - replacement: node-dns-unbound
+        targetLabel: job
+      - sourceLabels: [__meta_kubernetes_pod_container_name]
+        regex: exporter
+        action: keep
+      - sourceLabels: [__address__]
+        action: replace
+        regex: ([^:]+)(?::\d+)?
+        targetLabel: address
+      - sourceLabels: [address]
+        replacement: ${1}:9167
+        targetLabel: __address__
+      - sourceLabels: [__address__]
+        targetLabel: instance
