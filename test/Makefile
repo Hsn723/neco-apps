@@ -64,7 +64,6 @@ test-vmalert-rules:
 code-check: test-tools
 	test -z "$$(gofmt -s -l . | grep -v -E '^neco-apps' | tee /dev/stderr)"
 	staticcheck ./...
-	nilerr ./...
 	test -z "$$(custom-checker -restrictpkg.packages=html/template,log ./... 2>&1 | tee /dev/stderr)"
 	go vet ./...
 
@@ -129,18 +128,12 @@ setup: $(KUBECTL) $(KUSTOMIZE) $(PROMTOOL) $(TSH) $(ARGOCD)
 	go install github.com/onsi/ginkgo/ginkgo@latest
 
 .PHONY: test-tools
-test-tools: staticcheck nilerr custom-checker
+test-tools: staticcheck custom-checker
 
 .PHONY: staticcheck
 staticcheck:
 	if ! which staticcheck >/dev/null; then \
 		env GOFLAGS= go install honnef.co/go/tools/cmd/staticcheck@latest; \
-	fi
-
-.PHONY: nilerr
-nilerr:
-	if ! which nilerr >/dev/null; then \
-		env GOFLAGS= go install github.com/gostaticanalysis/nilerr/cmd/nilerr@latest; \
 	fi
 
 .PHONY: custom-checker
