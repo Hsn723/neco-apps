@@ -2,7 +2,7 @@ name: dctest-bootstrap
 on:
   workflow_call:
     inputs:
-      feature-branch:
+      is-feature-branch:
         description: ''
         required: false
         default: false
@@ -35,7 +35,7 @@ jobs:
         uses: ./.github/actions/dctest
         with:
           target-branch: ${{ github.head_ref || steps.extract_branch.outputs.branch }}
-          neco-branch: ${{ (inputs.feature-branch && steps.extract_branch.outputs.branch ) || 'release' }}
+          neco-branch: ${{ (inputs.is-feature-branch && steps.extract_branch.outputs.branch ) || 'release' }}
         env:
           GCLOUD_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_SERVICE_ACCOUNT }}
           QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}

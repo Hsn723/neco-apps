@@ -8,7 +8,7 @@ jobs:
   dctest-bootstrap:
     uses: ./.github/workflows/dctest-bootstrap.yaml
     with:
-      feature-branch: true
+      is-feature-branch: true
     secrets:
       GCLOUD_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_SERVICE_ACCOUNT }}
       QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
