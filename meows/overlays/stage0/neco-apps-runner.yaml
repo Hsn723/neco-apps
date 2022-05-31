@@ -10,8 +10,8 @@ spec:
   notification:
     slack:
       enable: true
-      channel: "#kmdkuk-dev"
-    extendDuration: "30m"
+      channel: "#neco"
+    extendDuration: "3h"
   workVolume:
     ephemeral:
       volumeClaimTemplate:
