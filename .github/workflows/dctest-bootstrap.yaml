@@ -3,7 +3,7 @@ on:
   workflow_call:
     inputs:
       is-feature-branch:
-        description: ''
+        description: "If set to true, then neco's branch will be the same as neco-apps."
         required: false
         default: false
         type: boolean

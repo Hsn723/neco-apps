@@ -6,15 +6,15 @@ inputs:
     required: false
     default: 'dctest'
   base-branch:
-    description: ''
+    description: 'The name of the branch to be bootstrapped the first when target=dctest-upgrade. Otherwise it is ignored.'
     required: false
     default: 'main'
   target-branch:
-    description: ''
+    description: 'Name of the branch in neco-apps where you want to run dctest.'
     required: false
     default: 'main'
   neco-branch:
-    description: ''
+    description: 'Name of the branch in neco where you want to run dctest.'
     required: false
     default: 'release'
 
