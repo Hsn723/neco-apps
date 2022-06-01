@@ -36,6 +36,10 @@ spec:
         "panels": [
             {
                 "collapsed": false,
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "${datasource}"
+                },
                 "gridPos": {
                     "h": 1,
                     "w": 24,
@@ -96,7 +100,7 @@ spec:
                     },
                     "textMode": "value"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -163,7 +167,7 @@ spec:
                     },
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -251,7 +255,8 @@ spec:
                         "placement": "bottom"
                     },
                     "tooltip": {
-                        "mode": "single"
+                        "mode": "single",
+                        "sort": "none"
                     }
                 },
                 "targets": [
@@ -342,7 +347,8 @@ spec:
                         "placement": "bottom"
                     },
                     "tooltip": {
-                        "mode": "single"
+                        "mode": "single",
+                        "sort": "none"
                     }
                 },
                 "pluginVersion": "8.2.2",
@@ -366,6 +372,10 @@ spec:
             },
             {
                 "collapsed": false,
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "${datasource}"
+                },
                 "gridPos": {
                     "h": 1,
                     "w": 24,
@@ -431,7 +441,7 @@ spec:
                     "showThresholdMarkers": true,
                     "text": {}
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -495,7 +505,7 @@ spec:
                     "text": {},
                     "textMode": "value"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -559,7 +569,7 @@ spec:
                     "text": {},
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -617,6 +627,8 @@ spec:
                 "id": 25,
                 "options": {
                     "displayMode": "gradient",
+                    "minVizHeight": 10,
+                    "minVizWidth": 0,
                     "orientation": "horizontal",
                     "reduceOptions": {
                         "calcs": [
@@ -628,7 +640,7 @@ spec:
                     "showUnfilled": true,
                     "text": {}
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -647,6 +659,10 @@ spec:
             },
             {
                 "collapsed": false,
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "${datasource}"
+                },
                 "gridPos": {
                     "h": 1,
                     "w": 24,
@@ -711,7 +727,7 @@ spec:
                     "showThresholdLabels": false,
                     "showThresholdMarkers": true
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -772,7 +788,7 @@ spec:
                     },
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -833,7 +849,7 @@ spec:
                     },
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -894,7 +910,7 @@ spec:
                     },
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -959,7 +975,7 @@ spec:
                     },
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -1024,7 +1040,7 @@ spec:
                     },
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -1043,6 +1059,10 @@ spec:
             },
             {
                 "collapsed": false,
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "${datasource}"
+                },
                 "gridPos": {
                     "h": 1,
                     "w": 24,
@@ -1136,7 +1156,7 @@ spec:
                     "text": {},
                     "textMode": "value"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -1208,7 +1228,7 @@ spec:
                     "showThresholdMarkers": true,
                     "text": {}
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -1271,7 +1291,7 @@ spec:
                     "text": {},
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -1334,7 +1354,7 @@ spec:
                     "text": {},
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -1396,7 +1416,7 @@ spec:
                     "text": {},
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -1458,7 +1478,7 @@ spec:
                     "text": {},
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -1525,7 +1545,7 @@ spec:
                     "text": {},
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -1589,7 +1609,7 @@ spec:
                     },
                     "textMode": "auto"
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -1648,6 +1668,8 @@ spec:
                 "id": 20,
                 "options": {
                     "displayMode": "gradient",
+                    "minVizHeight": 10,
+                    "minVizWidth": 0,
                     "orientation": "horizontal",
                     "reduceOptions": {
                         "calcs": [
@@ -1659,7 +1681,7 @@ spec:
                     "showUnfilled": true,
                     "text": {}
                 },
-                "pluginVersion": "8.4.0-pre",
+                "pluginVersion": "8.5.3",
                 "targets": [
                     {
                         "datasource": {
@@ -1674,6 +1696,77 @@ spec:
                     }
                 ],
                 "title": "MON PV Fill Rate Top 3",
+                "type": "bargauge"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "${datasource}"
+                },
+                "description": "",
+                "fieldConfig": {
+                    "defaults": {
+                        "color": {
+                            "mode": "thresholds"
+                        },
+                        "displayName": "${__field.labels.ceph_daemon}",
+                        "mappings": [],
+                        "max": 1,
+                        "min": 0,
+                        "thresholds": {
+                            "mode": "percentage",
+                            "steps": [
+                                {
+                                    "color": "green",
+                                    "value": null
+                                },
+                                {
+                                    "color": "red",
+                                    "value": 60
+                                }
+                            ]
+                        },
+                        "unit": "percentunit"
+                    },
+                    "overrides": []
+                },
+                "gridPos": {
+                    "h": 4,
+                    "w": 9,
+                    "x": 9,
+                    "y": 33
+                },
+                "id": 21,
+                "options": {
+                    "displayMode": "gradient",
+                    "minVizHeight": 10,
+                    "minVizWidth": 0,
+                    "orientation": "horizontal",
+                    "reduceOptions": {
+                        "calcs": [
+                            "lastNotNull"
+                        ],
+                        "fields": "",
+                        "values": false
+                    },
+                    "showUnfilled": true,
+                    "text": {}
+                },
+                "pluginVersion": "8.5.3",
+                "targets": [
+                    {
+                        "datasource": {
+                            "type": "prometheus",
+                            "uid": "${datasource}"
+                        },
+                        "exemplar": true,
+                        "expr": "topk(3, ceph_osd_stat_bytes_used{namespace=\"${cluster}\"}/ceph_osd_stat_bytes{namespace=\"${cluster}\"})",
+                        "interval": "",
+                        "legendFormat": "",
+                        "refId": "A"
+                    }
+                ],
+                "title": "OSD PV Fill Rate Top 3+",
                 "type": "bargauge"
             },
             {
@@ -1733,19 +1826,20 @@ spec:
                 },
                 "gridPos": {
                     "h": 8,
-                    "w": 9,
-                    "x": 9,
-                    "y": 33
+                    "w": 18,
+                    "x": 0,
+                    "y": 37
                 },
                 "id": 77,
                 "options": {
                     "legend": {
                         "calcs": [],
                         "displayMode": "list",
-                        "placement": "bottom"
+                        "placement": "right"
                     },
                     "tooltip": {
-                        "mode": "single"
+                        "mode": "single",
+                        "sort": "none"
                     }
                 },
                 "targets": [
@@ -1755,9 +1849,10 @@ spec:
                             "uid": "${datasource}"
                         },
                         "exemplar": true,
-                        "expr": "histogram_quantile(0.9, sum by (le, http_status, method) (rate(ceph_rgw_request_duration_seconds_bucket{namespace=\"${cluster}\"}[5m])))",
-                        "interval": "",
+                        "expr": "histogram_quantile(0.9, sum by (le, http_status, method) (rate(ceph_rgw_request_duration_seconds_bucket{namespace=\"${cluster}\"}[$__interval])))",
+                        "interval": "2m",
                         "legendFormat": "",
+                        "range": true,
                         "refId": "A"
                     }
                 ],
@@ -1773,69 +1868,89 @@ spec:
                 "fieldConfig": {
                     "defaults": {
                         "color": {
-                            "mode": "thresholds"
+                            "mode": "palette-classic"
                         },
-                        "displayName": "${__field.labels.ceph_daemon}",
+                        "custom": {
+                            "axisLabel": "",
+                            "axisPlacement": "auto",
+                            "barAlignment": 0,
+                            "drawStyle": "line",
+                            "fillOpacity": 0,
+                            "gradientMode": "none",
+                            "hideFrom": {
+                                "legend": false,
+                                "tooltip": false,
+                                "viz": false
+                            },
+                            "lineInterpolation": "linear",
+                            "lineStyle": {
+                                "fill": "solid"
+                            },
+                            "lineWidth": 1,
+                            "pointSize": 5,
+                            "scaleDistribution": {
+                                "type": "linear"
+                            },
+                            "showPoints": "auto",
+                            "spanNulls": false,
+                            "stacking": {
+                                "group": "A",
+                                "mode": "none"
+                            },
+                            "thresholdsStyle": {
+                                "mode": "off"
+                            }
+                        },
                         "mappings": [],
-                        "max": 1,
-                        "min": 0,
                         "thresholds": {
-                            "mode": "percentage",
+                            "mode": "absolute",
                             "steps": [
                                 {
                                     "color": "green",
                                     "value": null
-                                },
-                                {
-                                    "color": "red",
-                                    "value": 60
                                 }
                             ]
-                        },
-                        "unit": "percentunit"
+                        }
                     },
                     "overrides": []
                 },
                 "gridPos": {
-                    "h": 4,
-                    "w": 9,
+                    "h": 8,
+                    "w": 18,
                     "x": 0,
-                    "y": 37
+                    "y": 45
                 },
-                "id": 21,
+                "id": 149,
                 "options": {
-                    "displayMode": "gradient",
-                    "orientation": "horizontal",
-                    "reduceOptions": {
-                        "calcs": [
-                            "lastNotNull"
-                        ],
-                        "fields": "",
-                        "values": false
+                    "legend": {
+                        "calcs": [],
+                        "displayMode": "list",
+                        "placement": "right"
                     },
-                    "showUnfilled": true,
-                    "text": {}
+                    "tooltip": {
+                        "mode": "single",
+                        "sort": "none"
+                    }
                 },
-                "pluginVersion": "8.4.0-pre",
                 "targets": [
                     {
                         "datasource": {
                             "type": "prometheus",
                             "uid": "${datasource}"
                         },
-                        "exemplar": true,
-                        "expr": "topk(3, ceph_osd_stat_bytes_used{namespace=\"${cluster}\"}/ceph_osd_stat_bytes{namespace=\"${cluster}\"})",
-                        "interval": "",
-                        "legendFormat": "",
+                        "editorMode": "code",
+                        "expr": " sum by (method, http_status, pod) (max_over_time(increase(ceph_rgw_request_duration_seconds_count{namespace=\"${cluster}\"}[$__interval])))",
+                        "interval": "30s",
+                        "range": true,
                         "refId": "A"
                     }
                 ],
-                "title": "OSD PV Fill Rate Top 3+",
-                "type": "bargauge"
+                "title": "RGW requests",
+                "type": "timeseries"
             }
         ],
         "refresh": "",
-        "schemaVersion": 34,
+        "schemaVersion": 36,
         "style": "dark",
         "tags": [
             "ceph",
