@@ -76,17 +76,17 @@ dctest-reboot: install.yaml
 	PATH=$(BINDIR):$$PATH OVERLAY=$(OVERLAY) REBOOT=1 SUITE=$(SUITE) ./test.sh
 
 dctest-upgrade: install.yaml
-	if [  "$(SUITE)" = "prepare" ]; then \
-		git worktree remove /tmp/neco-apps; \
-		git worktree add /tmp/neco-apps $(BASE_BRANCH) && \
-		cp account.json /tmp/neco-apps/test && \
-		cp cybozu_private_repo_read_pat /tmp/neco-apps/test && \
-		cp meows-secret.json /tmp/neco-apps/test || true && \
-		cp ghcr_dockerconfig.json /tmp/neco-apps/test || true && \
-		cp quay_dockerconfig.json /tmp/neco-apps/test || true && \
-		$(MAKE) -C /tmp/neco-apps/test setup dctest SUITE=bootstrap COMMIT_ID=$(BASE_BRANCH); \
-		cp /tmp/neco-apps/test/argocd-password.txt ./; \
-	fi
+ifeq ($(SUITE), prepare)
+	-git worktree remove /tmp/neco-apps
+	git worktree add /tmp/neco-apps $(BASE_BRANCH)
+	cp account.json /tmp/neco-apps/test
+	cp cybozu_private_repo_read_pat /tmp/neco-apps/test
+	-cp meows-secret.json /tmp/neco-apps/test
+	-cp ghcr_dockerconfig.json /tmp/neco-apps/test
+	-cp quay_dockerconfig.json /tmp/neco-apps/test
+	$(MAKE) -C /tmp/neco-apps/test setup dctest SUITE=bootstrap COMMIT_ID=$(BASE_BRANCH)
+	cp /tmp/neco-apps/test/argocd-password.txt ./
+endif
 	PATH=$(BINDIR):$$PATH OVERLAY=$(OVERLAY) UPGRADE=1 SUITE=$(SUITE) ./test.sh
 
 .PHONY: setup-download
