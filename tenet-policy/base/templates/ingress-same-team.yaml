@@ -13,7 +13,7 @@ spec:
         ingress:
         - fromEndpoints:
           - matchLabels:
-              "k8s.io.cilium.k8s.namespace.labels.team": {{ index .Labels "team" }}
+              "k8s:io.cilium.k8s.namespace.labels.team": {{ index .Labels "team" }}
         - fromEndpoints:
           - matchLabels:
               "k8s:io.kubernetes.pod.namespace": monitoring
