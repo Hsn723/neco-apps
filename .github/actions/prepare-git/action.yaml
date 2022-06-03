@@ -1,0 +1,9 @@
+name: preapre git
+description: ''
+runs:
+  using: composite
+  steps:
+    - shell: sh
+      run: |
+        git config --global user.email "neco@cybozu.com"
+        git config --global user.name "cybozu-neco"

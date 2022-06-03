@@ -1,0 +1,27 @@
+name: create-pull-request-release
+on:
+  push:
+    tags:
+      - 'release-*'
+defaults:
+  run:
+    # For use ${GITHUB_REF##*/} to get tag name.
+    shell: bash
+
+jobs:
+  create-pull-request-release:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/prepare-git
+      - name: Create a pull request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG_NAME=${GITHUB_REF##*/}
+          git checkout -b op-${TAG_NAME} origin/release
+          git merge --no-edit ${TAG_NAME}
+          git push origin op-${TAG_NAME}
+          gh pr create --title "[CI] Release ${TAG_NAME}" --body "" --base=release --head=op-${TAG_NAME}

@@ -1,0 +1,26 @@
+name: push-release-tag
+on:
+  push:
+    branches:
+      - "stage"
+defaults:
+  run:
+    shell: sh
+
+jobs:
+  push-release-tag:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # For trigger create-pull-request-release when push tag.
+          token: ${{ secrets.GH_PAT }}
+      - uses: ./.github/actions/prepare-git
+      - run: |
+          git checkout stage
+          git merge --no-commit --no-ff ${{ github.sha }}
+      - name: Push tag to GitHub
+        run: |
+          TAG_NAME="release-$(date +%Y.%m.%d)-${{ github.run_id }}"
+          git tag ${TAG_NAME}
+          git push origin ${TAG_NAME}

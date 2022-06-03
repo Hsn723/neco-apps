@@ -1,0 +1,17 @@
+name: dctest-with-neco-feature-branch
+on:
+  workflow_dispatch:
+defaults:
+  run:
+    shell: sh
+jobs:
+  dctest-bootstrap:
+    uses: ./.github/workflows/dctest-bootstrap.yaml
+    with:
+      is-feature-branch: true
+    secrets:
+      GCLOUD_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_SERVICE_ACCOUNT }}
+      QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+      NECO_GITHUB_TOKEN: ${{ secrets.NECO_GITHUB_TOKEN }}
+      MEOWS_SECRET: ${{ secrets.MEOWS_SECRET }}
+      CYBOZU_PRIVATE_REPO_READ_PAT: ${{ secrets.CYBOZU_PRIVATE_REPO_READ_PAT }}
